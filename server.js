@@ -1,9 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const fsPromises = require('fs/promises');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const multer = require('multer');
 const { DatabaseSync } = require('node:sqlite');
 
 const app = express();
@@ -12,6 +14,7 @@ const PUBLIC_DIR = path.join(__dirname, 'public');
 const DEFAULT_DATA_DIR = path.join(__dirname, 'data');
 const DATA_DIR = process.env.DATA_DIR || process.env.RAILWAY_VOLUME_MOUNT_PATH || DEFAULT_DATA_DIR;
 const DB_FILE = path.join(DATA_DIR, 'lakshmi.sqlite');
+const UPLOAD_DIR = path.join(DATA_DIR, 'uploads');
 const COOKIE_NAME = 'lakshmi_admin';
 const ADMIN_LOGIN = process.env.ADMIN_LOGIN || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
@@ -19,7 +22,7 @@ const COOKIE_SECRET = process.env.COOKIE_SECRET || 'change_this_cookie_secret';
 const ACTIVE_STATUSES = ['new', 'in_progress', 'done', 'archived'];
 const ALL_STATUSES = [...ACTIVE_STATUSES, 'deleted'];
 
-app.use(express.json({ limit: '300kb' }));
+app.use(express.json({ limit: '400kb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(PUBLIC_DIR));
 
@@ -33,8 +36,21 @@ function sanitize(value, maxLength = 2000) {
     .slice(0, maxLength);
 }
 
+function safeOriginalName(filename) {
+  return String(filename || 'file')
+    .replace(/[\\/]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 180) || 'file';
+}
+
+function extFrom(filename) {
+  return path.extname(String(filename || '')).toLowerCase().replace(/[^.a-z0-9]/g, '').slice(0, 12);
+}
+
 async function ensureStorage() {
   await fsPromises.mkdir(DATA_DIR, { recursive: true });
+  await fsPromises.mkdir(UPLOAD_DIR, { recursive: true });
 }
 
 function columnExists(tableName, columnName) {
@@ -66,10 +82,30 @@ function initDb() {
   }
 
   db.exec(`
+    CREATE TABLE IF NOT EXISTS lead_attachments (
+      id TEXT PRIMARY KEY,
+      lead_id TEXT NOT NULL,
+      category TEXT NOT NULL,
+      original_name TEXT NOT NULL,
+      stored_name TEXT NOT NULL,
+      mime_type TEXT DEFAULT '',
+      size_bytes INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL,
+      FOREIGN KEY(lead_id) REFERENCES leads(id) ON DELETE CASCADE
+    );
+    CREATE INDEX IF NOT EXISTS idx_lead_attachments_lead_id ON lead_attachments(lead_id);
+    CREATE INDEX IF NOT EXISTS idx_lead_attachments_category ON lead_attachments(category);
+  `);
+
+  db.exec(`
     CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at);
     CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
     CREATE INDEX IF NOT EXISTS idx_leads_deleted_at ON leads(deleted_at);
   `);
+}
+
+function getNowId(prefix = '') {
+  return `${prefix}${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
 function validateLead(payload) {
@@ -99,7 +135,7 @@ function validateLead(payload) {
   return {
     ok: true,
     lead: {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      id: getNowId(),
       createdAt: new Date().toISOString(),
       name,
       phone,
@@ -112,13 +148,136 @@ function validateLead(payload) {
   };
 }
 
-function normalizeLead(row) {
+function validateGamifiedLead(body, files) {
+  const objectType = sanitize(body.objectType, 120);
+  const objectAddress = sanitize(body.objectAddress, 220);
+  const objectArea = sanitize(body.objectArea, 40);
+  const cadastralNumber = sanitize(body.cadastralNumber, 80);
+  const objectDetails = sanitize(body.objectDetails, 500);
+  const purpose = sanitize(body.purpose, 120);
+  const message = sanitize(body.message, 2000);
+  const contactName = sanitize(body.contactName, 120);
+  const contactPhone = sanitize(body.contactPhone, 40);
+  const contactEmail = sanitize(body.contactEmail, 120);
+  const consent = sanitize(body.consent, 10);
+  const website = sanitize(body.website, 200);
+
+  const rightDocs = files.rightDocs || [];
+  const techDocs = files.techDocs || [];
+  const photos = files.photos || [];
+  const additionalFiles = files.additionalFiles || [];
+
+  if (website) {
+    return { ok: false, message: 'Заявка отклонена системой антиспама.' };
+  }
+  if (!rightDocs.length) {
+    return { ok: false, message: 'Добавьте хотя бы один правоустанавливающий документ.' };
+  }
+  if (!objectType) {
+    return { ok: false, message: 'Выберите тип объекта.' };
+  }
+  if (!objectAddress || objectAddress.length < 5) {
+    return { ok: false, message: 'Укажите адрес объекта.' };
+  }
+  if (!objectArea) {
+    return { ok: false, message: 'Укажите площадь или ключевой параметр объекта.' };
+  }
+  if (!photos.length) {
+    return { ok: false, message: 'Добавьте хотя бы одну фотографию объекта.' };
+  }
+  if (!purpose) {
+    return { ok: false, message: 'Выберите цель оценки.' };
+  }
+  if (!contactName || contactName.length < 2) {
+    return { ok: false, message: 'Укажите имя для связи.' };
+  }
+  if (!contactPhone || contactPhone.length < 6) {
+    return { ok: false, message: 'Укажите телефон для связи.' };
+  }
+  if (consent !== 'yes') {
+    return { ok: false, message: 'Нужно согласие на обработку персональных данных.' };
+  }
+
+  const lead = {
+    id: getNowId(),
+    createdAt: new Date().toISOString(),
+    name: contactName,
+    phone: contactPhone,
+    service: `Геймифицированная заявка — ${objectType}`,
+    source: 'Геймифицированная страница сайта',
+    status: 'new',
+    managerNote: '',
+    message: [
+      `Тип объекта: ${objectType}`,
+      `Адрес: ${objectAddress}`,
+      `Площадь / основной параметр: ${objectArea}`,
+      cadastralNumber ? `Кадастровый номер: ${cadastralNumber}` : '',
+      objectDetails ? `Дополнительные характеристики: ${objectDetails}` : '',
+      `Цель оценки: ${purpose}`,
+      contactEmail ? `Email: ${contactEmail}` : 'Email: не указан',
+      `Правоустанавливающие документы: ${rightDocs.length} файл(ов)`,
+      `Технические документы: ${techDocs.length} файл(ов)`,
+      `Фотографии: ${photos.length} файл(ов)`,
+      `Дополнительные файлы: ${additionalFiles.length} файл(ов)`,
+      `Комментарий: ${message || 'не указан'}`,
+    ].filter(Boolean).join('\n'),
+  };
+
+  return {
+    ok: true,
+    lead,
+    meta: {
+      objectType,
+      objectAddress,
+      objectArea,
+      cadastralNumber,
+      objectDetails,
+      purpose,
+      message,
+      contactEmail,
+      rightDocs,
+      techDocs,
+      photos,
+      additionalFiles,
+    },
+  };
+}
+
+function normalizeAttachment(row) {
+  return row
+    ? {
+        ...row,
+        size_bytes: Number(row.size_bytes || 0),
+        download_url: `/api/admin/attachments/${encodeURIComponent(row.id)}/download`,
+      }
+    : null;
+}
+
+function getAttachmentById(id) {
+  const row = db.prepare('SELECT * FROM lead_attachments WHERE id = ? LIMIT 1').get(id);
+  return normalizeAttachment(row);
+}
+
+function getAttachmentsByLeadIds(leadIds) {
+  const map = new Map();
+  if (!leadIds.length) return map;
+  const placeholders = leadIds.map(() => '?').join(',');
+  const rows = db.prepare(`SELECT * FROM lead_attachments WHERE lead_id IN (${placeholders}) ORDER BY datetime(created_at) ASC`).all(...leadIds);
+  rows.forEach((row) => {
+    if (!map.has(row.lead_id)) map.set(row.lead_id, []);
+    map.get(row.lead_id).push(normalizeAttachment(row));
+  });
+  return map;
+}
+
+function normalizeLead(row, attachments = []) {
   return row
     ? {
         ...row,
         email_sent: Boolean(row.email_sent),
         telegram_sent: Boolean(row.telegram_sent),
         is_deleted: row.status === 'deleted' || Boolean(row.deleted_at),
+        attachments,
       }
     : null;
 }
@@ -145,6 +304,37 @@ function saveLead(lead, emailSent, telegramSent) {
   );
 }
 
+function saveAttachments(leadId, filesByCategory) {
+  const stmt = db.prepare(`
+    INSERT INTO lead_attachments (
+      id, lead_id, category, original_name, stored_name, mime_type, size_bytes, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  Object.entries(filesByCategory).forEach(([category, files]) => {
+    (files || []).forEach((file) => {
+      stmt.run(
+        getNowId('att-'),
+        leadId,
+        category,
+        safeOriginalName(file.originalname),
+        file.filename,
+        sanitize(file.mimetype, 120),
+        Number(file.size || 0),
+        new Date().toISOString(),
+      );
+    });
+  });
+}
+
+async function removeAttachmentFilesForLead(leadId) {
+  const rows = db.prepare('SELECT stored_name FROM lead_attachments WHERE lead_id = ?').all(leadId);
+  for (const row of rows) {
+    const filePath = path.join(UPLOAD_DIR, row.stored_name);
+    await fsPromises.unlink(filePath).catch(() => {});
+  }
+}
+
 function listLeads(status = 'all') {
   let sql = 'SELECT * FROM leads';
   const params = [];
@@ -161,50 +351,50 @@ function listLeads(status = 'all') {
   }
 
   sql += ' ORDER BY datetime(created_at) DESC';
-  const stmt = db.prepare(sql);
-  return stmt.all(...params).map(normalizeLead);
+  const rows = db.prepare(sql).all(...params);
+  const attachmentsByLead = getAttachmentsByLeadIds(rows.map((row) => row.id));
+  return rows.map((row) => normalizeLead(row, attachmentsByLead.get(row.id) || []));
 }
 
 function getLeadById(id) {
-  const stmt = db.prepare('SELECT * FROM leads WHERE id = ? LIMIT 1');
-  return normalizeLead(stmt.get(id));
+  const row = db.prepare('SELECT * FROM leads WHERE id = ? LIMIT 1').get(id);
+  const attachments = row ? getAttachmentsByLeadIds([row.id]).get(row.id) || [] : [];
+  return normalizeLead(row, attachments);
 }
 
 function updateLead(id, status, managerNote) {
   const normalizedStatus = status === 'deleted' ? 'deleted' : status;
   const deletedAt = normalizedStatus === 'deleted' ? new Date().toISOString() : null;
-  const stmt = db.prepare(`
+  db.prepare(`
     UPDATE leads
     SET status = ?, manager_note = ?, deleted_at = ?
     WHERE id = ?
-  `);
-  stmt.run(normalizedStatus, managerNote, deletedAt, id);
+  `).run(normalizedStatus, managerNote, deletedAt, id);
   return getLeadById(id);
 }
 
 function softDeleteLead(id) {
-  const stmt = db.prepare(`
+  db.prepare(`
     UPDATE leads
     SET status = 'deleted', deleted_at = ?
     WHERE id = ?
-  `);
-  stmt.run(new Date().toISOString(), id);
+  `).run(new Date().toISOString(), id);
   return getLeadById(id);
 }
 
 function restoreLead(id) {
-  const stmt = db.prepare(`
+  db.prepare(`
     UPDATE leads
     SET status = 'archived', deleted_at = NULL
     WHERE id = ?
-  `);
-  stmt.run(id);
+  `).run(id);
   return getLeadById(id);
 }
 
-function hardDeleteLead(id) {
-  const stmt = db.prepare('DELETE FROM leads WHERE id = ?');
-  const result = stmt.run(id);
+async function hardDeleteLead(id) {
+  await removeAttachmentFilesForLead(id);
+  db.prepare('DELETE FROM lead_attachments WHERE lead_id = ?').run(id);
+  const result = db.prepare('DELETE FROM leads WHERE id = ?').run(id);
   return result.changes > 0;
 }
 
@@ -363,6 +553,47 @@ function requireAdmin(req, res, next) {
   return next();
 }
 
+const uploadStorage = multer.diskStorage({
+  destination(_req, _file, cb) {
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    cb(null, UPLOAD_DIR);
+  },
+  filename(_req, file, cb) {
+    const extension = extFrom(file.originalname);
+    cb(null, `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${extension}`);
+  },
+});
+
+const gamifiedUpload = multer({
+  storage: uploadStorage,
+  limits: {
+    files: 18,
+    fileSize: 15 * 1024 * 1024,
+  },
+  fileFilter(_req, file, cb) {
+    const allowedExt = ['.pdf', '.jpg', '.jpeg', '.png', '.doc', '.docx', '.xls', '.xlsx', '.heic', '.webp'];
+    const ext = extFrom(file.originalname);
+    if (!allowedExt.includes(ext) && !String(file.mimetype || '').startsWith('image/')) {
+      return cb(new Error('Допустимы PDF, DOC, DOCX, XLS, XLSX и изображения.'));
+    }
+    cb(null, true);
+  },
+}).fields([
+  { name: 'rightDocs', maxCount: 5 },
+  { name: 'techDocs', maxCount: 5 },
+  { name: 'photos', maxCount: 8 },
+  { name: 'additionalFiles', maxCount: 5 },
+]);
+
+async function cleanupUploadedFiles(files) {
+  const all = Object.values(files || {}).flat();
+  for (const file of all) {
+    if (file?.path) {
+      await fsPromises.unlink(file.path).catch(() => {});
+    }
+  }
+}
+
 app.get('/', (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'lakshmi_landing_restyled.html'));
 });
@@ -415,6 +646,19 @@ app.get('/api/admin/leads', requireAdmin, (req, res) => {
   return res.json({ ok: true, leads, stats });
 });
 
+app.get('/api/admin/attachments/:id/download', requireAdmin, (req, res) => {
+  const id = sanitize(req.params.id, 80);
+  const attachment = getAttachmentById(id);
+  if (!attachment) {
+    return res.status(404).send('Файл не найден');
+  }
+  const filePath = path.join(UPLOAD_DIR, attachment.stored_name);
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).send('Файл не найден на диске');
+  }
+  return res.download(filePath, attachment.original_name);
+});
+
 app.patch('/api/admin/leads/:id', requireAdmin, (req, res) => {
   const id = sanitize(req.params.id, 80);
   const status = sanitize(req.body.status, 40);
@@ -460,9 +704,9 @@ app.post('/api/admin/leads/:id/restore', requireAdmin, (req, res) => {
   return res.json({ ok: true, lead, message: 'Заявка восстановлена и перенесена в архив.' });
 });
 
-app.delete('/api/admin/leads/:id', requireAdmin, (req, res) => {
+app.delete('/api/admin/leads/:id', requireAdmin, async (req, res) => {
   const id = sanitize(req.params.id, 80);
-  const deleted = hardDeleteLead(id);
+  const deleted = await hardDeleteLead(id);
   if (!deleted) {
     return res.status(404).json({ ok: false, message: 'Заявка не найдена.' });
   }
@@ -505,16 +749,66 @@ app.post('/api/leads', async (req, res) => {
       message = 'Заявка отправлена. Уведомление ушло в Telegram, а сама заявка сохранена в админке.';
     }
 
-    return res.json({
-      ok: true,
-      message,
-      emailSent,
-      telegramSent,
-    });
+    return res.json({ ok: true, message, emailSent, telegramSent });
   } catch (error) {
     console.error('Lead submit error:', error);
     return res.status(500).json({ ok: false, message: 'Ошибка на сервере при обработке заявки.' });
   }
+});
+
+app.post('/api/gamified-leads', (req, res) => {
+  gamifiedUpload(req, res, async (err) => {
+    if (err) {
+      return res.status(400).json({ ok: false, message: err.message || 'Не удалось загрузить файлы.' });
+    }
+
+    const files = req.files || {};
+    const validated = validateGamifiedLead(req.body || {}, files);
+
+    if (!validated.ok) {
+      await cleanupUploadedFiles(files);
+      return res.status(400).json(validated);
+    }
+
+    let emailSent = false;
+    let telegramSent = false;
+
+    try {
+      try {
+        const emailResult = await sendLeadEmail(validated.lead);
+        emailSent = !!emailResult.sent;
+      } catch (error) {
+        console.error('Email error:', error.message);
+      }
+
+      try {
+        const tgResult = await sendTelegramMessage(validated.lead);
+        telegramSent = !!tgResult.sent;
+      } catch (error) {
+        console.error('Telegram error:', error.message);
+      }
+
+      saveLead(validated.lead, emailSent, telegramSent);
+      saveAttachments(validated.lead.id, files);
+
+      return res.json({
+        ok: true,
+        message: 'Геймифицированная заявка отправлена. Все файлы сохранены, а карточка передана компании.',
+        emailSent,
+        telegramSent,
+        uploaded: {
+          rightDocs: (files.rightDocs || []).length,
+          techDocs: (files.techDocs || []).length,
+          photos: (files.photos || []).length,
+          additionalFiles: (files.additionalFiles || []).length,
+        },
+      });
+    } catch (error) {
+      console.error('Gamified lead submit error:', error);
+      await cleanupUploadedFiles(files);
+      return res.status(500).json({ ok: false, message: 'Ошибка на сервере при обработке геймифицированной заявки.' });
+    }
+  });
 });
 
 app.listen(PORT, async () => {

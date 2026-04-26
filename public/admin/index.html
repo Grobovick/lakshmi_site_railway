@@ -155,6 +155,17 @@
       .grid { grid-template-columns: 1fr; }
       .meta { grid-template-columns: 1fr; }
     }
+  
+    .attachment-box { margin-top: 14px; padding: 14px 16px; border-radius: 18px; border: 1px solid rgba(77,24,18,.08); background: rgba(248,244,240,.72); }
+    .attachment-title { font-size: 13px; font-weight: 700; color: #4D1812; margin-bottom: 10px; }
+    .attachment-list { display: grid; gap: 8px; }
+    .attachment-link {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 10px 12px; border-radius: 14px; text-decoration: none; color: #4D1812;
+      background: rgba(255,255,255,.88); border: 1px solid rgba(77,24,18,.08);
+    }
+    .attachment-link small { color: #7E5F57; font-size: 12px; }
+
   </style>
 </head>
 <body>
@@ -231,6 +242,32 @@
         .replace(/'/g, '&#039;');
     }
 
+
+    function formatBytes(bytes) {
+      const value = Number(bytes || 0);
+      if (!value) return '0 Б';
+      if (value < 1024) return `${value} Б`;
+      if (value < 1024 * 1024) return `${(value / 1024).toFixed(1)} КБ`;
+      return `${(value / (1024 * 1024)).toFixed(1)} МБ`;
+    }
+
+    function renderAttachments(lead) {
+      if (!lead.attachments || !lead.attachments.length) return '';
+      return `
+        <div class="attachment-box">
+          <div class="attachment-title">Файлы по заявке (${lead.attachments.length})</div>
+          <div class="attachment-list">
+            ${lead.attachments.map((file) => `
+              <a class="attachment-link" href="${encodeURI(file.download_url)}" target="_blank" rel="noopener noreferrer">
+                <span>${escapeHtml(file.original_name)}</span>
+                <small>${formatBytes(file.size_bytes)}</small>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
     function renderActionButtons(lead) {
       if (lead.status === 'deleted') {
         return `
@@ -270,6 +307,7 @@
           </div>
 
           <div class="meta-item"><strong>Комментарий клиента</strong>${escapeHtml(lead.message || 'Комментарий не указан')}</div>
+          ${renderAttachments(lead)}
 
           <div class="row">
             <div>
