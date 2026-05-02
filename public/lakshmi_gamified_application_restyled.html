@@ -931,6 +931,277 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
   }
 }
 
+
+/* Mobile polish: step-by-step page */
+.hero-copy,
+.hero-panel,
+.dashboard-card,
+.object-card,
+.step-card,
+.timeline-card,
+.mini-card,
+.cta-point {
+  min-width: 0;
+}
+.hero-title,
+.section-head h2,
+.cta-band h2 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+@media (max-width: 900px) {
+  .hero-copy,
+  .hero-panel,
+  .dashboard-card,
+  .object-card,
+  .step-card,
+  .timeline-card,
+  .mini-card {
+    padding: 20px;
+  }
+  .container {
+    width: min(var(--container-max), calc(100% - 24px));
+  }
+}
+@media (max-width: 640px) {
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero {
+    padding-top: 20px;
+  }
+  .hero__grid,
+  .dashboard,
+  .cta-grid,
+  .panel-top {
+    gap: 14px;
+  }
+  .hero-copy,
+  .hero-panel,
+  .dashboard-card,
+  .object-card,
+  .step-card,
+  .timeline-card,
+  .mini-card,
+  .cta-band {
+    padding: 16px;
+    border-radius: 22px;
+  }
+  .hero-title {
+    font-size: clamp(30px, 10vw, 42px);
+    line-height: 0.98;
+    max-width: none;
+  }
+  .hero-text {
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.62;
+  }
+  .hero-actions,
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hero-actions .btn,
+  .cta-actions .btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 15px;
+  }
+  .hero-stats {
+    margin-top: 18px;
+    gap: 10px;
+  }
+  .stat {
+    padding: 14px;
+    border-radius: 18px;
+  }
+  .stat strong {
+    font-size: 28px;
+  }
+  .orbital {
+    min-height: 200px;
+    border-radius: 20px;
+  }
+  .orbital::before {
+    width: 250px;
+    height: 250px;
+  }
+  .orbital__core {
+    width: 132px;
+    height: 132px;
+    box-shadow: 0 12px 24px rgba(77,24,18,.2), 0 0 0 10px rgba(255,255,255,.42);
+  }
+  .orbital__core strong {
+    font-size: 34px;
+  }
+  .orbital-chip {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  .section {
+    padding: 22px 0;
+  }
+  .section-head {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-head h2 {
+    font-size: clamp(28px, 9vw, 38px);
+    line-height: 1.02;
+  }
+  .section-head p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .steps-grid,
+  .timeline,
+  .object-fields,
+  .inline-grid,
+  .inline-grid--triple {
+    grid-template-columns: 1fr !important;
+  }
+  .step-card h3,
+  .timeline-card h3,
+  .object-title h3 {
+    font-size: 18px;
+    line-height: 1.16;
+  }
+  .step-card p,
+  .timeline-card p,
+  .mini-card p,
+  .check-copy p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .dashboard-card {
+    padding: 16px;
+  }
+  .checklist {
+    gap: 10px;
+  }
+  .check-item {
+    padding: 14px;
+    gap: 12px;
+    border-radius: 16px;
+  }
+  .check-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+  }
+  .check-copy h3 {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  .check-details {
+    gap: 12px;
+  }
+  .upload-line {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .upload-button,
+  .inline-grid .field input,
+  .inline-grid .field select,
+  .inline-grid .field textarea,
+  .inline-grid--triple .field input,
+  .inline-grid--triple .field select,
+  .inline-grid--triple .field textarea {
+    width: 100%;
+  }
+  .object-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .score-pill {
+    white-space: normal;
+  }
+  .object-visual {
+    height: 210px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+  }
+  .house {
+    width: min(94%, 320px);
+    height: 172px;
+  }
+  .house__roof {
+    border-left-width: 110px;
+    border-right-width: 110px;
+    border-bottom-width: 72px;
+  }
+  .house__body {
+    width: 230px;
+    height: 112px;
+    border-radius: 18px 18px 0 0;
+  }
+  .house__grid {
+    inset: 12px;
+    gap: 8px;
+  }
+  .house__cell {
+    font-size: 11px;
+    border-radius: 12px;
+    padding: 6px;
+    text-align: center;
+  }
+  .field-chip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+  .field-chip span {
+    white-space: normal;
+  }
+  .timeline-card .kicker {
+    margin-bottom: 10px;
+  }
+  .cta-band {
+    margin: 20px 0 34px;
+  }
+  .cta-band h2 {
+    font-size: clamp(30px, 10vw, 40px);
+    line-height: 0.98;
+    margin-bottom: 12px;
+  }
+  .cta-band p {
+    font-size: 15px;
+    line-height: 1.62;
+    max-width: none;
+  }
+  .cta-points {
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .cta-point {
+    padding: 14px;
+    border-radius: 16px;
+  }
+  .cta-point strong {
+    font-size: 15px;
+    line-height: 1.25;
+  }
+  .submit-box {
+    padding: 16px;
+    border-radius: 18px;
+  }
+  .submit-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .submit-grid .btn {
+    width: 100%;
+  }
+}
+
 </style>
 </head>
 <body>
