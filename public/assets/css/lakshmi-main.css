@@ -1365,3 +1365,68 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
 @media (max-width: 560px) {
   .site-header .brand__logo--full { width: 176px; }
 }
+
+/* === V4 fix: mobile first screen should not create horizontal scroll === */
+.hero__grid,
+.hero__content,
+.hero__side,
+.hero-logo-wrap,
+.hero-logo-card,
+.hero__badges,
+.mini-card {
+  min-width: 0;
+}
+
+.hero,
+.hero__grid,
+.hero__side {
+  max-width: 100%;
+}
+
+@media (max-width: 1120px) {
+  .hero__grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-logo-wrap {
+    width: min(100%, 520px);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 24px;
+    padding-bottom: 28px;
+    overflow: hidden;
+  }
+  .hero__content h1 {
+    max-width: none;
+    font-size: clamp(38px, 11vw, 56px);
+    line-height: 1.04;
+  }
+  .hero__content .lead {
+    max-width: 100%;
+  }
+  .hero-logo-wrap,
+  .hero-logo-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-logo-wrap > img,
+  .hero-logo-card img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__content,
+  .hero__side {
+    padding: 20px;
+  }
+  .hero-logo-wrap {
+    padding: 16px;
+  }
+}

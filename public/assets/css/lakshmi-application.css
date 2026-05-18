@@ -1230,3 +1230,88 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
 @media (max-width: 560px) {
   .site-header .brand__logo--full { width: 176px; }
 }
+
+/* Application form improvement: keep object card visible while filling long checklist */
+@media (min-width: 1221px) {
+  .dashboard {
+    align-items: start;
+  }
+
+  .dashboard > #object {
+    position: sticky;
+    top: 106px;
+    align-self: start;
+    z-index: 3;
+    max-height: calc(100svh - 126px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(164, 115, 44, 0.55) rgba(77, 24, 18, 0.06);
+  }
+
+  .dashboard > #object::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .dashboard > #object::-webkit-scrollbar-track {
+    background: rgba(77, 24, 18, 0.06);
+    border-radius: 999px;
+  }
+
+  .dashboard > #object::-webkit-scrollbar-thumb {
+    background: rgba(164, 115, 44, 0.55);
+    border-radius: 999px;
+  }
+
+  .dashboard > #object .object-card {
+    box-shadow: 0 16px 38px rgba(77, 24, 18, 0.10);
+  }
+}
+
+/* === V4 fix: application page uses the same container rhythm as the main page === */
+:root {
+  --container-max: 1440px;
+  --gutter: clamp(18px, 2.8vw, 40px);
+  --container: min(var(--container-max), calc(100% - (var(--gutter) * 2)));
+}
+
+.container,
+.site-header .container,
+.site-footer .container {
+  width: var(--container);
+}
+
+@media (min-width: 1680px) {
+  :root {
+    --container-max: 1520px;
+    --gutter: clamp(28px, 2.5vw, 48px);
+  }
+}
+
+@media (max-width: 900px) {
+  .container,
+  .site-header .container,
+  .site-footer .container {
+    width: var(--container) !important;
+  }
+}
+
+/* === V4 fix: final explanatory block contrast and shorter heading === */
+.cta-band h2 {
+  color: rgba(255, 255, 255, 0.94);
+  max-width: 720px;
+  font-size: clamp(34px, 3.7vw, 54px);
+  line-height: 1.03;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+
+.cta-band p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(16px, 1.2vw, 18px);
+}
+
+.cta-band .btn--secondary {
+  --btn-bg: rgba(255,255,255,0.78);
+  --btn-color: #4D1812;
+  border-color: rgba(255,255,255,0.22);
+}
