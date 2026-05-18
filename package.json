@@ -5,7 +5,8 @@
   "description": "Лакшми — сайт с рабочей заявкой, Telegram, почтой, админкой и Railway Volume",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "node src/build.js"
   },
   "engines": {
     "node": ">=22"

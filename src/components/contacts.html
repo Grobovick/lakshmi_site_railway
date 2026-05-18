@@ -1,0 +1,62 @@
+<section class="section" id="contacts">
+<div class="container contact-wrap">
+<div class="contact-card reveal">
+<div class="eyebrow">Контакты и заявка</div>
+<h2>Связаться с «Лакшми»</h2>
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin: 0 0 20px;">
+<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
+<a class="btn btn--secondary" href="#services">Посмотреть услуги</a>
+</div>
+<div class="contact-points">
+<div class="contact-point">
+<strong>Телефон</strong>
+<span>+7 (900) 000-00-00</span>
+</div>
+<div class="contact-point">
+<strong>E-mail</strong>
+<span>info@lakshmi-ocenka.ru</span>
+</div>
+<div class="contact-point">
+<strong>Формат работы</strong>
+<span>По записи, онлайн-консультации и очный прием</span>
+</div>
+</div>
+</div>
+<div class="contact-card reveal">
+<h3 style="margin-bottom: 16px;">Оставить заявку</h3>
+<form class="form" id="leadForm">
+<input autocomplete="off" class="hp-field" name="website" tabindex="-1" type="text"/>
+<div class="field">
+<label for="name">Ваше имя</label>
+<input id="name" name="name" placeholder="Введите имя" required="" type="text"/>
+</div>
+<div class="grid-2">
+<div class="field">
+<label for="phone">Телефон</label>
+<input id="phone" name="phone" placeholder="+7 (___) ___-__-__" required="" type="tel"/>
+</div>
+<div class="field">
+<label for="service">Услуга</label>
+<select id="service" name="service">
+<option>Оценка недвижимости</option>
+<option>Оценка бизнеса</option>
+<option>Оценка ущерба</option>
+<option>Оценка оборудования</option>
+<option>Другая задача</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label for="message">Комментарий</label>
+<textarea id="message" name="message" placeholder="Кратко опишите объект и задачу" rows="5"></textarea>
+</div>
+<label class="consent">
+<input name="consent" required="" type="checkbox" value="yes"/>
+<span>Согласен(а) на обработку персональных данных для обратной связи по заявке.</span>
+</label>
+<button class="btn btn--gold" id="leadSubmit" type="submit">Отправить заявку</button>
+<div aria-live="polite" class="form-status note" id="formStatus"></div>
+</form>
+</div>
+</div>
+</section>
