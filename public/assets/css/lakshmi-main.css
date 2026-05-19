@@ -1430,3 +1430,1392 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
     padding: 16px;
   }
 }
+
+/* === V8 hero: noticeable CTA in Lakshmi style === */
+.hero--proposal {
+  padding: clamp(30px, 4vh, 56px) 0 clamp(42px, 5.5vh, 74px);
+  overflow: hidden;
+}
+
+.hero-proposal-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(390px, .82fr);
+  gap: clamp(24px, 3.6vw, 58px);
+  align-items: center;
+  min-height: min(690px, calc(100svh - 132px));
+  padding: clamp(30px, 4.1vw, 60px);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 96% 82%, rgba(164,115,44,.18), transparent 0 22%),
+    linear-gradient(135deg, rgba(255,251,246,.9), rgba(255,255,255,.68));
+  border: 1px solid rgba(77,24,18,.1);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.hero-proposal-card::before {
+  content: "";
+  position: absolute;
+  inset: clamp(12px, 1.7vw, 24px);
+  border: 1px solid rgba(77,24,18,.075);
+  border-radius: calc(var(--radius-xl) - 7px);
+  pointer-events: none;
+}
+
+.hero-proposal-card::after {
+  content: "";
+  position: absolute;
+  right: -170px;
+  bottom: -180px;
+  width: 430px;
+  height: 430px;
+  border-radius: 50%;
+  background: rgba(164,115,44,.13);
+  pointer-events: none;
+}
+
+.hero-proposal__content,
+.hero-step-banner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-proposal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(4px, 1vw, 14px) 0;
+}
+
+.hero-proposal-card .eyebrow {
+  width: max-content;
+  max-width: 100%;
+  margin-bottom: clamp(18px, 2vw, 26px);
+}
+
+.hero-proposal-card h1 {
+  max-width: 940px;
+  margin: 0 0 clamp(18px, 2vw, 24px);
+  color: var(--purple-deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 5.35vw, 84px);
+  line-height: 1.01;
+  letter-spacing: -.055em;
+}
+
+.hero-proposal__lead {
+  max-width: 750px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(16px, 1.32vw, 19px);
+  line-height: 1.75;
+}
+
+.hero-proposal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(24px, 3.1vw, 36px);
+}
+
+.hero-proposal__scenarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: clamp(24px, 3.8vw, 44px);
+}
+
+.hero-proposal__scenarios span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.64);
+  border: 1px solid rgba(77,24,18,.09);
+  color: var(--muted);
+  font-size: 14px;
+  box-shadow: 0 8px 18px rgba(77,24,18,.045);
+}
+
+.hero-step-banner {
+  align-self: center;
+  display: grid;
+  gap: 18px;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(164,115,44,.24), transparent 0 31%),
+    linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,251,246,.7));
+  color: var(--purple);
+  border: 1px solid rgba(77,24,18,.1);
+  box-shadow: 0 22px 48px rgba(77,24,18,.14);
+  overflow: hidden;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.hero-step-banner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 60px rgba(77,24,18,.18);
+  border-color: rgba(164,115,44,.2);
+}
+
+.hero-step-banner__link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.hero-step-banner__top,
+.hero-step-banner__mockup,
+.hero-step-banner__text,
+.hero-step-link {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-step-banner__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-step-banner__top span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.hero-step-banner__top strong {
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: var(--purple);
+  background: rgba(77,24,18,.055);
+  border: 1px solid rgba(77,24,18,.09);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.hero-step-banner__mockup {
+  display: grid;
+  gap: 12px;
+  padding: clamp(16px, 2.3vw, 22px);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(77,24,18,.98), rgba(89,31,24,.92));
+  color: #fff7ef;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.09), 0 18px 34px rgba(77,24,18,.16);
+}
+
+.mockup-card {
+  display: grid;
+  gap: 7px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.13);
+}
+
+.mockup-card span {
+  color: rgba(255,247,239,.68);
+  font-size: 12px;
+}
+
+.mockup-card strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.2vw, 34px);
+  line-height: 1.05;
+  color: #fff7ef;
+}
+
+.mockup-progress {
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,.16);
+}
+
+.mockup-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+}
+
+.mockup-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mockup-grid div {
+  display: grid;
+  gap: 5px;
+  min-height: 76px;
+  padding: 11px 8px;
+  border-radius: 15px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.mockup-grid b {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: var(--purple-deep);
+  font-size: 12px;
+}
+
+.mockup-grid span {
+  color: rgba(255,247,239,.78);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.hero-step-banner__text h2 {
+  margin: 0 0 10px;
+  color: var(--purple-deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.hero-step-banner__text p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+.hero-step-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: var(--purple-deep);
+  font-weight: 800;
+  transition: transform .24s ease, box-shadow .24s ease, background .24s ease;
+  pointer-events: none;
+}
+
+.hero-step-link::after {
+  content: " →";
+  margin-left: 7px;
+}
+
+.hero-step-banner:hover .hero-step-link {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(164,115,44,.22);
+}
+
+@media (min-width: 1200px) and (max-height: 850px) {
+  .hero--proposal {
+    padding-top: 24px;
+    padding-bottom: 34px;
+  }
+  .hero-proposal-card {
+    min-height: auto;
+    padding: clamp(30px, 3.6vw, 54px);
+  }
+  .hero-proposal-card h1 {
+    font-size: clamp(48px, 4.9vw, 76px);
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero-proposal-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-step-banner {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero--proposal {
+    padding-top: 22px;
+    padding-bottom: 34px;
+    overflow: hidden;
+  }
+  .hero-proposal-card {
+    padding: 24px;
+    border-radius: 24px;
+  }
+  .hero-proposal-card::before {
+    inset: 14px;
+    border-radius: 18px;
+  }
+  .hero-proposal-card::after {
+    right: -220px;
+    bottom: -220px;
+  }
+  .hero-proposal-card h1 {
+    font-size: clamp(42px, 11.5vw, 62px);
+    max-width: 100%;
+  }
+  .hero-proposal__lead {
+    font-size: 16px;
+    max-width: 100%;
+  }
+  .hero-step-banner {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-proposal-card {
+    padding: 20px;
+  }
+  .hero-proposal-card .eyebrow {
+    width: 100%;
+    justify-content: flex-start;
+    white-space: normal;
+    border-radius: 18px;
+  }
+  .hero-proposal__actions .btn,
+  .hero-step-link {
+    width: 100%;
+  }
+  .hero-proposal__scenarios span {
+    width: calc(50% - 5px);
+    justify-content: center;
+    text-align: center;
+  }
+  .mockup-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mockup-card strong {
+    font-size: 26px;
+  }
+}
+
+/* === V9 hero: dark minimal CTA, aligned with Lakshmi branding === */
+.hero--dark-minimal {
+  padding: clamp(28px, 3.8vh, 50px) 0 clamp(42px, 5vh, 70px);
+  overflow: hidden;
+}
+
+.hero--dark-minimal .hero-proposal-card {
+  grid-template-columns: minmax(0, 1.02fr) minmax(380px, .78fr);
+  gap: clamp(28px, 4vw, 66px);
+  align-items: center;
+  min-height: min(680px, calc(100svh - 128px));
+  padding: clamp(34px, 5.1vw, 78px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 95% 9%, rgba(164, 115, 44, .28), transparent 0 22%),
+    radial-gradient(circle at 7% 94%, rgba(164, 115, 44, .22), transparent 0 20%),
+    linear-gradient(132deg, #210908 0%, #3a100d 42%, #561d15 100%);
+  border: 1px solid rgba(212, 175, 91, .22);
+  box-shadow: 0 26px 70px rgba(77, 24, 18, .25);
+  color: #fff7ef;
+}
+
+.hero--dark-minimal .hero-proposal-card::before {
+  inset: clamp(14px, 1.8vw, 26px);
+  border-color: rgba(255, 247, 239, .09);
+  border-radius: 25px;
+}
+
+.hero--dark-minimal .hero-proposal-card::after {
+  right: -160px;
+  bottom: -180px;
+  width: 430px;
+  height: 430px;
+  background: rgba(164, 115, 44, .16);
+  filter: blur(.2px);
+}
+
+.hero--dark-minimal .hero-proposal__content {
+  padding: 0;
+}
+
+.hero--dark-minimal .hero-proposal-card .eyebrow {
+  margin-bottom: clamp(24px, 3vw, 40px);
+  background: rgba(255, 247, 239, .08);
+  color: #e2bd64;
+  border: 1px solid rgba(226, 189, 100, .14);
+  letter-spacing: .04em;
+}
+
+.hero--dark-minimal .hero-proposal-card .eyebrow::before {
+  background: linear-gradient(135deg, #d6ad4b, #f0d67c);
+  box-shadow: 0 0 0 5px rgba(214, 173, 75, .13);
+}
+
+.hero--dark-minimal .hero-proposal-card h1 {
+  max-width: 900px;
+  margin-bottom: clamp(22px, 2.8vw, 34px);
+  color: #fff7ef;
+  font-size: clamp(52px, 5.6vw, 92px);
+  line-height: .98;
+  letter-spacing: -.06em;
+}
+
+.hero--dark-minimal .hero-proposal-card h1::first-letter {
+  letter-spacing: -.08em;
+}
+
+.hero--dark-minimal .hero-proposal__lead {
+  max-width: 700px;
+  color: rgba(255, 247, 239, .78);
+  font-size: clamp(17px, 1.22vw, 20px);
+  line-height: 1.72;
+}
+
+.hero--dark-minimal .hero-proposal__actions {
+  margin-top: clamp(30px, 4vw, 48px);
+}
+
+.hero--dark-minimal .btn {
+  min-height: 58px;
+  padding: 0 28px;
+  font-size: 16px;
+}
+
+.hero--dark-minimal .btn--gold {
+  color: #35100c;
+  background: linear-gradient(135deg, #d4a33f, #e8c45b);
+  box-shadow: 0 18px 34px rgba(164, 115, 44, .26);
+}
+
+.hero--dark-minimal .btn--dark-outline {
+  background: rgba(255, 247, 239, .035);
+  color: #fff7ef;
+  border-color: rgba(226, 189, 100, .52);
+  box-shadow: none;
+}
+
+.hero--dark-minimal .btn--dark-outline:hover {
+  background: rgba(255, 247, 239, .08);
+  border-color: rgba(226, 189, 100, .72);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, .14);
+}
+
+.hero--dark-minimal .hero-step-banner {
+  align-self: center;
+  gap: 22px;
+  padding: clamp(26px, 3.2vw, 42px);
+  border-radius: 30px;
+  color: #fff7ef;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(164, 115, 44, .18), transparent 0 28%),
+    linear-gradient(150deg, rgba(255, 247, 239, .075), rgba(255, 247, 239, .035));
+  border: 1px solid rgba(226, 189, 100, .46);
+  box-shadow: inset 0 0 0 1px rgba(255, 247, 239, .04), 0 24px 54px rgba(0, 0, 0, .18);
+  backdrop-filter: blur(10px);
+}
+
+.hero--dark-minimal .hero-step-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 1px rgba(255, 247, 239, .05), 0 30px 64px rgba(0, 0, 0, .22);
+  border-color: rgba(226, 189, 100, .62);
+}
+
+.hero--dark-minimal .hero-step-banner__top span {
+  color: #e2bd64;
+}
+
+.hero--dark-minimal .hero-step-banner__top strong {
+  color: #fff7ef;
+  background: rgba(255, 247, 239, .08);
+  border-color: rgba(255, 247, 239, .12);
+}
+
+.hero--dark-minimal .hero-step-banner__text h2 {
+  color: #fff7ef;
+  font-size: clamp(32px, 3.1vw, 48px);
+  line-height: 1.08;
+}
+
+.hero--dark-minimal .hero-step-banner__text p {
+  color: rgba(255, 247, 239, .72);
+  font-size: 16px;
+}
+
+.hero-stepper {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  padding: 18px 10px 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 247, 239, .11);
+  background: rgba(255, 247, 239, .055);
+}
+
+.hero-stepper::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 35px;
+  height: 1px;
+  background: rgba(226, 189, 100, .32);
+}
+
+.hero-stepper span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  color: rgba(255, 247, 239, .74);
+  font-size: 12.5px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hero-stepper span::before {
+  content: counter(step-number);
+  counter-increment: step-number;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2f0d0b;
+  border: 1px solid rgba(226, 189, 100, .48);
+  color: #e2bd64;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.hero-stepper {
+  counter-reset: step-number;
+}
+
+.hero-stepper span.is-active::before {
+  background: linear-gradient(135deg, #d4a33f, #e8c45b);
+  color: #35100c;
+  border-color: transparent;
+}
+
+.hero--dark-minimal .hero-step-link {
+  min-height: 58px;
+  color: #35100c;
+  background: linear-gradient(135deg, #d4a33f, #e8c45b);
+}
+
+.hero--dark-minimal .hero-step-link::after {
+  margin-left: 10px;
+}
+
+@media (max-width: 1120px) {
+  .hero--dark-minimal .hero-proposal-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero--dark-minimal {
+    padding-top: 22px;
+  }
+  .hero--dark-minimal .hero-proposal-card {
+    padding: 24px;
+    border-radius: 26px;
+  }
+  .hero--dark-minimal .hero-proposal-card::before {
+    inset: 14px;
+    border-radius: 20px;
+  }
+  .hero--dark-minimal .hero-proposal-card h1 {
+    font-size: clamp(42px, 12.2vw, 64px);
+    line-height: 1.02;
+  }
+  .hero--dark-minimal .hero-step-banner {
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero--dark-minimal .hero-proposal-card {
+    padding: 22px 18px;
+  }
+  .hero--dark-minimal .hero-proposal-card .eyebrow {
+    width: 100%;
+    white-space: normal;
+    border-radius: 18px;
+  }
+  .hero--dark-minimal .btn,
+  .hero--dark-minimal .hero-step-link {
+    width: 100%;
+  }
+  .hero-stepper {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px;
+  }
+  .hero-stepper::before {
+    display: none;
+  }
+  .hero-stepper span {
+    grid-template-columns: 34px 1fr;
+    justify-items: start;
+    align-items: center;
+    text-align: left;
+    gap: 10px;
+  }
+  .hero-stepper span::before {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* === V10 hero: exact concept translation with current Lakshmi header/styles === */
+.hero--concept-final {
+  padding: clamp(22px, 3vh, 38px) 0 clamp(38px, 5vh, 64px);
+}
+
+.hero--concept-final .container {
+  width: min(1700px, calc(100% - clamp(28px, 3vw, 56px)));
+}
+
+.hero--concept-final .hero-proposal-card {
+  grid-template-columns: minmax(0, 1.08fr) minmax(450px, .92fr);
+  gap: clamp(42px, 5.5vw, 94px);
+  min-height: min(750px, calc(100svh - 128px));
+  padding: clamp(54px, 5.5vw, 104px) clamp(54px, 6.6vw, 128px);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 98% 4%, rgba(164, 115, 44, .31), transparent 0 20%),
+    radial-gradient(circle at 3% 99%, rgba(164, 115, 44, .28), transparent 0 18%),
+    linear-gradient(123deg, rgba(20, 5, 7, .98) 0%, #2a0909 33%, #3a0e0b 62%, #4f1a13 100%);
+  box-shadow: 0 28px 72px rgba(77, 24, 18, .26), 0 2px 0 rgba(255, 255, 255, .18) inset;
+}
+
+.hero--concept-final .hero-proposal-card::before {
+  inset: clamp(16px, 1.8vw, 28px);
+  border: 1px solid rgba(255, 247, 239, .08);
+  border-radius: 25px;
+}
+
+.hero--concept-final .hero-proposal-card::after {
+  right: auto;
+  left: -85px;
+  bottom: -84px;
+  width: 235px;
+  height: 480px;
+  border-radius: 120px 120px 0 0;
+  background:
+    linear-gradient(90deg, rgba(164, 115, 44, .13), transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255, 247, 239, .08) 0 2px, transparent 2px 22px);
+  opacity: .55;
+  filter: blur(.2px);
+  transform: skewX(-7deg);
+}
+
+.hero--concept-final .hero-proposal__content::before {
+  content: "";
+  position: absolute;
+  left: -82px;
+  top: 70px;
+  width: 240px;
+  height: 430px;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 247, 239, .42), transparent 0 24%),
+    linear-gradient(90deg, rgba(255, 247, 239, .08), transparent 65%);
+  clip-path: polygon(0 0, 78% 0, 92% 100%, 0 100%);
+}
+
+.hero--concept-final .hero-proposal-card .eyebrow {
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: clamp(34px, 4vw, 58px);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #e0bc62;
+  font-size: clamp(11px, .72vw, 13px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+.hero--concept-final .hero-proposal-card .eyebrow::before {
+  width: 48px;
+  height: 1px;
+  border-radius: 0;
+  background: currentColor;
+  box-shadow: none;
+}
+
+.hero--concept-final .hero-proposal-card h1 {
+  max-width: 900px;
+  margin: 0 0 clamp(28px, 3vw, 42px);
+  color: #fbf4ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 5.2vw, 96px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+}
+
+.hero--concept-final .hero-proposal-card h1 span {
+  color: #d6ad4b;
+}
+
+.hero--concept-final .hero-proposal__lead {
+  max-width: 720px;
+  color: rgba(255, 247, 239, .78);
+  font-size: clamp(17px, 1.15vw, 20px);
+  line-height: 1.68;
+}
+
+.hero--concept-final .hero-proposal__actions {
+  margin-top: clamp(34px, 3.8vw, 58px);
+  gap: 28px;
+}
+
+.hero--concept-final .btn {
+  min-width: 210px;
+  min-height: 64px;
+  padding: 0 34px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.hero--concept-final .btn--gold {
+  color: #35100c;
+  background: linear-gradient(135deg, #d5a13f, #eccb61);
+  border-color: rgba(255, 237, 170, .35);
+  box-shadow: 0 22px 42px rgba(164, 115, 44, .22);
+}
+
+.hero--concept-final .btn--gold::after,
+.hero--concept-final .btn--dark-outline::after {
+  content: "→";
+  position: static;
+  width: auto;
+  height: auto;
+  margin-left: 16px;
+  background: none;
+  transform: none;
+  opacity: 1;
+  color: currentColor;
+  transition: transform .22s ease;
+}
+
+.hero--concept-final .btn:hover::after {
+  transform: translateX(4px);
+}
+
+.hero--concept-final .btn--dark-outline {
+  color: #fff7ef;
+  background: rgba(255, 247, 239, .025);
+  border: 1px solid rgba(214, 173, 75, .58);
+}
+
+.hero-proof {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: clamp(40px, 5vw, 70px);
+  max-width: 700px;
+}
+
+.hero-proof__item {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  align-items: center;
+  min-width: 190px;
+  padding: 0 clamp(18px, 2vw, 30px);
+  border-right: 1px solid rgba(255, 247, 239, .18);
+}
+
+.hero-proof__item:first-child {
+  padding-left: 0;
+}
+
+.hero-proof__item:last-child {
+  border-right: 0;
+}
+
+.hero-proof__item span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  color: #d6ad4b;
+  border: 1px solid rgba(214, 173, 75, .48);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.hero-proof__item strong {
+  color: rgba(255, 247, 239, .82);
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.hero--concept-final .hero-step-banner {
+  width: min(100%, 610px);
+  justify-self: end;
+  padding: clamp(34px, 4vw, 50px);
+  gap: clamp(24px, 2.5vw, 34px);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(164, 115, 44, .14), transparent 0 28%),
+    linear-gradient(145deg, rgba(80, 24, 18, .77), rgba(49, 12, 11, .62));
+  border: 1px solid rgba(226, 189, 100, .58);
+  box-shadow: inset 0 0 0 1px rgba(255, 247, 239, .045), 0 28px 70px rgba(0, 0, 0, .21);
+}
+
+.hero--concept-final .hero-step-banner__top {
+  justify-content: flex-start;
+}
+
+.hero--concept-final .hero-step-banner__top span {
+  color: #e0bc62;
+  letter-spacing: .22em;
+}
+
+.hero--concept-final .hero-step-banner__text h2 {
+  max-width: 500px;
+  margin: 0;
+  color: #fff7ef;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 2.7vw, 48px);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -.035em;
+}
+
+.hero--concept-final .hero-stepper {
+  padding: 22px 14px 16px;
+  border-radius: 24px;
+  background: rgba(255, 247, 239, .06);
+  border-color: rgba(255, 247, 239, .12);
+}
+
+.hero--concept-final .hero-stepper::before {
+  top: 40px;
+  background: rgba(226, 189, 100, .34);
+}
+
+.hero--concept-final .hero-stepper span {
+  gap: 12px;
+  color: rgba(255, 247, 239, .84);
+  font-size: 13px;
+}
+
+.hero--concept-final .hero-stepper span::before {
+  width: 40px;
+  height: 40px;
+  background: #2b0a08;
+  border-color: rgba(226, 189, 100, .52);
+}
+
+.hero--concept-final .hero-stepper span.is-active::before {
+  background: linear-gradient(135deg, #d6ad4b, #eccb61);
+  color: #35100c;
+}
+
+.hero--concept-final .hero-step-link {
+  min-height: 64px;
+  border-radius: 10px;
+  color: #35100c;
+  background: linear-gradient(135deg, #d5a13f, #eccb61);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.hero-step-note {
+  position: relative;
+  z-index: 2;
+  margin: -2px 0 0;
+  color: rgba(255, 247, 239, .58);
+  font-size: 14px;
+}
+
+.hero-step-note::before {
+  content: "▣";
+  margin-right: 9px;
+  color: rgba(226, 189, 100, .75);
+}
+
+@media (max-width: 1280px) {
+  .hero--concept-final .hero-proposal-card {
+    grid-template-columns: 1fr;
+  }
+  .hero--concept-final .hero-step-banner {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero--concept-final .container {
+    width: min(100% - 28px, 100%);
+  }
+  .hero--concept-final .hero-proposal-card {
+    min-height: auto;
+    padding: 34px 24px;
+    border-radius: 26px;
+  }
+  .hero--concept-final .hero-proposal-card::after,
+  .hero--concept-final .hero-proposal__content::before {
+    display: none;
+  }
+  .hero--concept-final .hero-proposal-card h1 {
+    font-size: clamp(44px, 12vw, 68px);
+    line-height: 1.04;
+  }
+  .hero-proof {
+    display: grid;
+    gap: 14px;
+    margin-top: 34px;
+  }
+  .hero-proof__item {
+    padding: 0;
+    border-right: 0;
+    min-width: 0;
+  }
+  .hero--concept-final .hero-step-banner {
+    border-radius: 24px;
+    padding: 26px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero--concept-final .hero-proposal-card .eyebrow {
+    display: flex;
+    width: 100%;
+    letter-spacing: .12em;
+    line-height: 1.35;
+  }
+  .hero--concept-final .btn {
+    min-width: 0;
+    width: 100%;
+  }
+  .hero--concept-final .hero-stepper {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    padding: 15px;
+  }
+  .hero--concept-final .hero-stepper::before {
+    display: none;
+  }
+  .hero--concept-final .hero-stepper span {
+    grid-template-columns: 38px 1fr;
+    justify-items: start;
+    align-items: center;
+    text-align: left;
+  }
+  .hero--concept-final .hero-stepper span::before {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* === V11 final polish: compact dark hero + application banner instead of quick form === */
+.hero--concept-final {
+  padding: clamp(18px, 2.2vh, 28px) 0 clamp(34px, 4vh, 48px);
+}
+
+.hero--concept-final .container {
+  width: var(--container);
+}
+
+.hero--concept-final .hero-proposal-card {
+  grid-template-columns: minmax(0, 1.05fr) minmax(390px, .78fr);
+  gap: clamp(30px, 4vw, 58px);
+  min-height: min(610px, calc(100svh - 118px));
+  padding: clamp(36px, 4.1vw, 66px) clamp(34px, 5vw, 82px);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(164, 115, 44, .24), transparent 0 18%),
+    radial-gradient(circle at 3% 100%, rgba(164, 115, 44, .2), transparent 0 16%),
+    linear-gradient(125deg, rgba(20, 5, 7, .98) 0%, #280808 38%, #3a0e0b 70%, #4a1711 100%);
+  box-shadow: 0 24px 62px rgba(77, 24, 18, .23), 0 1px 0 rgba(255, 255, 255, .16) inset;
+}
+
+.hero--concept-final .hero-proposal-card::before {
+  inset: clamp(14px, 1.5vw, 22px);
+  border-color: rgba(255, 247, 239, .075);
+  border-radius: 22px;
+}
+
+.hero--concept-final .hero-proposal-card::after,
+.hero--concept-final .hero-proposal__content::before {
+  display: none;
+}
+
+.hero--concept-final .hero-proposal__content {
+  justify-content: center;
+}
+
+.hero--concept-final .hero-proposal-card .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
+  padding: 10px 14px;
+  margin-bottom: clamp(26px, 3.2vw, 42px);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 247, 239, .08);
+  background: rgba(255, 247, 239, .055);
+  color: #e0bc62;
+  font-size: clamp(11px, .72vw, 13px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.hero--concept-final .hero-proposal-card .eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, #d6ad4b, #eccb61);
+  box-shadow: 0 0 0 5px rgba(214, 173, 75, .13);
+}
+
+.hero--concept-final .hero-proposal-card h1 {
+  max-width: 820px;
+  margin-bottom: clamp(22px, 2.6vw, 34px);
+  font-size: clamp(48px, 4.55vw, 78px);
+  font-weight: 500;
+  line-height: 1.03;
+  letter-spacing: -.052em;
+}
+
+.hero--concept-final .hero-proposal__lead {
+  max-width: 650px;
+  font-size: clamp(16px, 1.05vw, 18px);
+  line-height: 1.65;
+}
+
+.hero--concept-final .hero-proposal__actions {
+  margin-top: clamp(26px, 3vw, 40px);
+  gap: 16px;
+}
+
+.hero--concept-final .btn {
+  min-width: 180px;
+  min-height: 56px;
+  padding: 0 28px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+.hero--concept-final .btn--dark-outline {
+  color: #fff;
+}
+
+.hero-proof {
+  display: none;
+}
+
+.hero--concept-final .hero-step-banner {
+  width: min(100%, 500px);
+  padding: clamp(28px, 3vw, 38px);
+  gap: 22px;
+  border-radius: 26px;
+  align-self: center;
+}
+
+.hero--concept-final .hero-step-banner__text h2 {
+  max-width: 430px;
+  font-size: clamp(28px, 2.05vw, 40px);
+  line-height: 1.17;
+}
+
+.hero--concept-final .hero-stepper {
+  padding: 18px 12px 14px;
+  border-radius: 20px;
+}
+
+.hero--concept-final .hero-stepper::before {
+  top: 35px;
+}
+
+.hero--concept-final .hero-stepper span {
+  font-size: 12px;
+  gap: 10px;
+}
+
+.hero--concept-final .hero-stepper span::before {
+  width: 34px;
+  height: 34px;
+}
+
+.hero--concept-final .hero-step-link {
+  min-height: 56px;
+  border-radius: 14px;
+  font-size: 16px;
+}
+
+.hero-step-note {
+  font-size: 13px;
+}
+
+.contact-wrap--banner {
+  grid-template-columns: minmax(320px, .78fr) minmax(420px, 1.22fr);
+  align-items: stretch;
+}
+
+.contact-lead {
+  color: var(--muted);
+  max-width: 660px;
+  margin: -4px 0 22px;
+}
+
+.application-banner {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(164, 115, 44, .28);
+  background:
+    radial-gradient(circle at 92% 5%, rgba(164, 115, 44, .28), transparent 0 24%),
+    radial-gradient(circle at 0% 100%, rgba(164, 115, 44, .16), transparent 0 20%),
+    linear-gradient(135deg, #2a0808 0%, #4D1812 56%, #63271c 100%);
+  box-shadow: 0 22px 52px rgba(77, 24, 18, .18);
+  color: #fff7ef;
+}
+
+.application-banner::before {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(255, 247, 239, .08);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.application-banner__inner {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: clamp(30px, 4vw, 54px);
+}
+
+.application-banner__label {
+  width: max-content;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: rgba(255, 247, 239, .07);
+  border: 1px solid rgba(255, 247, 239, .1);
+  color: #e0bc62;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.application-banner h3 {
+  max-width: 760px;
+  margin: 0;
+  color: #fff7ef;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 3.4vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+}
+
+.application-banner p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 247, 239, .78);
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.65;
+}
+
+.application-banner__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.application-banner__steps span {
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 189, 100, .28);
+  background: rgba(255, 247, 239, .055);
+  color: rgba(255, 247, 239, .82);
+  font-size: 13px;
+}
+
+.application-banner__cta {
+  width: max-content;
+  margin-top: 8px;
+}
+
+.application-banner .btn--gold,
+.application-banner__cta.btn--gold {
+  color: #35100c;
+}
+
+.site-header .nav .btn--gold,
+.mobile-menu__cta.btn--gold {
+  color: #4D1812;
+}
+
+@media (max-width: 1280px) {
+  .hero--concept-final .hero-proposal-card {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, .78fr);
+    gap: 28px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero--concept-final .hero-proposal-card,
+  .contact-wrap--banner {
+    grid-template-columns: 1fr;
+  }
+  .hero--concept-final .hero-step-banner {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero--concept-final .hero-proposal-card {
+    padding: 32px 22px;
+    border-radius: 24px;
+  }
+  .hero--concept-final .hero-proposal-card h1 {
+    font-size: clamp(40px, 11vw, 58px);
+  }
+  .application-banner__inner {
+    padding: 28px 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero--concept-final .hero-proposal-card .eyebrow {
+    width: 100%;
+    letter-spacing: .1em;
+    line-height: 1.35;
+  }
+  .hero--concept-final .hero-stepper {
+    grid-template-columns: 1fr;
+  }
+  .hero--concept-final .hero-stepper::before {
+    display: none;
+  }
+  .application-banner__cta {
+    width: 100%;
+  }
+}
+
+/* === V12 final hero/header polish === */
+.site-header .nav .btn--gold,
+.mobile-menu__cta.btn--gold {
+  --btn-color: #fff;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(53, 16, 12, 0.22);
+}
+
+.site-header .nav .btn--gold:hover,
+.mobile-menu__cta.btn--gold:hover,
+.site-header .nav .btn--gold:focus-visible,
+.mobile-menu__cta.btn--gold:focus-visible {
+  color: #fff;
+}
+
+.hero--concept-final {
+  min-height: calc(100svh - 84px);
+  display: flex;
+  align-items: center;
+  padding: clamp(22px, 2.8vh, 34px) 0 clamp(26px, 3.2vh, 42px);
+}
+
+.hero--concept-final .hero-proposal-card {
+  min-height: clamp(640px, calc(100svh - 150px), 720px);
+  padding: clamp(42px, 4.5vw, 74px) clamp(38px, 5vw, 86px);
+}
+
+.hero--concept-final .hero-proposal-card h1 {
+  margin-bottom: clamp(22px, 2.5vw, 32px);
+}
+
+.hero--concept-final .hero-proposal__actions {
+  margin-top: clamp(28px, 3vw, 42px);
+}
+
+.hero--concept-final .hero-proof {
+  display: flex;
+  margin-top: clamp(34px, 4vw, 54px);
+  max-width: 760px;
+}
+
+.hero--concept-final .hero-proof__item {
+  min-width: 190px;
+}
+
+.hero--concept-final .hero-proof__item strong {
+  color: rgba(255, 247, 239, .84);
+}
+
+.hero--concept-final .hero-step-banner {
+  width: min(100%, 515px);
+}
+
+@media (min-width: 1281px) and (max-height: 850px) {
+  .hero--concept-final {
+    min-height: calc(100svh - 76px);
+  }
+  .hero--concept-final .hero-proposal-card {
+    min-height: clamp(620px, calc(100svh - 132px), 690px);
+    padding-top: clamp(36px, 3.8vw, 60px);
+    padding-bottom: clamp(36px, 3.8vw, 60px);
+  }
+  .hero--concept-final .hero-proof {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero--concept-final {
+    min-height: auto;
+  }
+  .hero--concept-final .hero-proposal-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero--concept-final .hero-proof {
+    display: grid;
+  }
+}

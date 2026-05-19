@@ -1,10 +1,11 @@
 <section class="section" id="contacts">
-<div class="container contact-wrap">
+<div class="container contact-wrap contact-wrap--banner">
 <div class="contact-card reveal">
-<div class="eyebrow">Контакты и заявка</div>
+<div class="eyebrow">Контакты</div>
 <h2>Связаться с «Лакшми»</h2>
+<p class="contact-lead">Опишите задачу через пошаговую заявку или свяжитесь с компанией удобным способом. После обращения специалист уточнит детали, перечень документов и сроки подготовки отчёта.</p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; margin: 0 0 20px;">
-<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
+<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Оставить заявку</a>
 <a class="btn btn--secondary" href="#services">Посмотреть услуги</a>
 </div>
 <div class="contact-points">
@@ -18,45 +19,20 @@
 </div>
 <div class="contact-point">
 <strong>Формат работы</strong>
-<span>По записи, онлайн-консультации и очный прием</span>
+<span>По записи, онлайн-консультации и очный приём</span>
 </div>
 </div>
 </div>
-<div class="contact-card reveal">
-<h3 style="margin-bottom: 16px;">Оставить заявку</h3>
-<form class="form" id="leadForm">
-<input autocomplete="off" class="hp-field" name="website" tabindex="-1" type="text"/>
-<div class="field">
-<label for="name">Ваше имя</label>
-<input id="name" name="name" placeholder="Введите имя" required="" type="text"/>
+<div class="application-banner reveal" aria-label="Переход к пошаговой заявке">
+<div class="application-banner__inner">
+<div class="application-banner__label">Пошаговая заявка</div>
+<h3>Заполните заявку без лишних вопросов</h3>
+<p>Форма ведёт по этапам: объект, документы, фотографии, цель оценки и контакты. Можно заполнить только то, что есть сейчас — недостающие детали специалист уточнит после обращения.</p>
+<div class="application-banner__steps" aria-hidden="true">
+<span>Объект</span><span>Документы</span><span>Фото</span><span>Цель</span><span>Контакты</span>
 </div>
-<div class="grid-2">
-<div class="field">
-<label for="phone">Телефон</label>
-<input id="phone" name="phone" placeholder="+7 (___) ___-__-__" required="" type="tel"/>
+<a class="btn btn--gold application-banner__cta" href="lakshmi_gamified_application_restyled.html">Перейти к заявке</a>
 </div>
-<div class="field">
-<label for="service">Услуга</label>
-<select id="service" name="service">
-<option>Оценка недвижимости</option>
-<option>Оценка бизнеса</option>
-<option>Оценка ущерба</option>
-<option>Оценка оборудования</option>
-<option>Другая задача</option>
-</select>
-</div>
-</div>
-<div class="field">
-<label for="message">Комментарий</label>
-<textarea id="message" name="message" placeholder="Кратко опишите объект и задачу" rows="5"></textarea>
-</div>
-<label class="consent">
-<input name="consent" required="" type="checkbox" value="yes"/>
-<span>Согласен(а) на обработку персональных данных для обратной связи по заявке.</span>
-</label>
-<button class="btn btn--gold" id="leadSubmit" type="submit">Отправить заявку</button>
-<div aria-live="polite" class="form-status note" id="formStatus"></div>
-</form>
 </div>
 </div>
 </section>
