@@ -18,7 +18,8 @@ function render(template) {
 
 const pages = [
   { layout: 'layouts/base.html', output: 'lakshmi_landing_restyled.html' },
-  { layout: 'layouts/application.html', output: 'lakshmi_gamified_application_restyled.html' }
+  { layout: 'layouts/application.html', output: 'lakshmi_gamified_application_restyled.html' },
+  { layout: 'layouts/office.html', output: 'lakshmi_virtual_office.html' }
 ];
 
 for (const page of pages) {

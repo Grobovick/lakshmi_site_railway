@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>document.documentElement.classList.add('js');</script>
+<title>Лакшми — 3D офис</title>
+<meta content="Интерактивный 3D офис оценочной компании «Лакшми»: стойка, кабинет оценщика, архив и переговорная." name="description"/>
+<link href="assets/css/lakshmi-main.css" rel="stylesheet"/>
+<link href="assets/css/lakshmi-office.css" rel="stylesheet"/>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+<div class="container header-inner">
+<a aria-label="Лакшми — Оценочная Компания" class="brand" href="lakshmi_landing_restyled.html#home"><img alt="Лакшми — Оценочная Компания" class="brand__logo brand__logo--full" src="assets/img/lakshmi-logo-full-header.png"/></a>
+<nav class="nav">
+<a href="lakshmi_landing_restyled.html#home">Главная</a><a class="is-active" href="#top">3D офис</a><a href="lakshmi_landing_restyled.html#cases">Ситуации</a><a href="lakshmi_landing_restyled.html#services">Услуги</a><a href="lakshmi_landing_restyled.html#process">Этапы</a><a href="lakshmi_landing_restyled.html#faq">FAQ</a><a href="lakshmi_landing_restyled.html#contacts">Контакты</a><a href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
+<a class="btn btn--gold" href="lakshmi_landing_restyled.html#contacts">Быстрая заявка</a>
+</nav>
+<button aria-controls="mobileMenu" aria-expanded="false" aria-label="Открыть меню" class="nav-toggle" type="button">
+<span class="nav-toggle__lines"><span></span><span></span><span></span></span>
+</button>
+</div>
+<div aria-hidden="true" class="mobile-menu">
+<div class="mobile-menu__panel">
+<div class="mobile-menu__list">
+<a href="lakshmi_landing_restyled.html#home">Главная</a>
+<a href="#top">3D офис</a>
+<a href="lakshmi_landing_restyled.html#cases">Ситуации</a>
+<a href="lakshmi_landing_restyled.html#services">Услуги</a>
+<a href="lakshmi_landing_restyled.html#faq">FAQ</a>
+<a href="lakshmi_landing_restyled.html#contacts">Контакты</a>
+<a href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
+</div>
+<a class="btn btn--gold mobile-menu__cta" href="lakshmi_landing_restyled.html#contacts">Быстрая заявка</a>
+</div>
+</div>
+</header>
+<main class="office-page" id="top">
+<section class="office-hero section">
+<div class="container">
+<div class="office-intro reveal">
+<div>
+<div class="eyebrow">Интерактивный офис</div>
+<h1>3D офис «Лакшми»</h1>
+<p class="office-lead">Поверните модель, выберите зону и перейдите к нужному действию: подаче заявки, этапам оценки, документам или контактам. Раздел сделан как навигация по услугам, а не как отдельная декоративная сцена.</p>
+</div>
+<div class="office-intro__note">
+<strong>Как пользоваться</strong>
+<span>Модель можно вращать мышью или пальцем. Для быстрого перехода используйте метки на модели или список справа.</span>
+</div>
+</div>
+
+<div class="office-layout">
+<section class="office-viewer-card reveal" aria-label="Интерактивная модель офиса">
+<div class="office-card-head">
+<div>
+<h2>План офиса</h2>
+<p>Выберите точку на модели или используйте кнопки под окном просмотра.</p>
+</div>
+<span class="office-badge">GLB модель</span>
+</div>
+
+<div class="office-viewer-stage" id="officeViewerBlock">
+<model-viewer
+id="officeViewer"
+src="assets/models/lakshmi-office.glb"
+alt="Виртуальный офис оценочной компании Лакшми"
+camera-controls
+touch-action="pan-y"
+shadow-intensity="1"
+exposure="1"
+environment-image="neutral"
+interaction-prompt="none"
+camera-orbit="15deg 72deg 12m"
+min-camera-orbit="auto 35deg auto"
+max-camera-orbit="auto 88deg auto"
+field-of-view="34deg"
+interpolation-decay="120"
+loading="eager"
+reveal="auto"
+disable-pan>
+<button class="office-hotspot" slot="hotspot-reception" data-position="0.0m 1.2m 3.0m" data-normal="0m 1m 0m" data-zone="reception" type="button">Стойка</button>
+<button class="office-hotspot" slot="hotspot-appraiser" data-position="2.2m 1.2m -0.2m" data-normal="0m 1m 0m" data-zone="appraiser" type="button">Кабинет</button>
+<button class="office-hotspot" slot="hotspot-archive" data-position="-2.6m 1.25m -1.9m" data-normal="0m 1m 0m" data-zone="archive" type="button">Архив</button>
+<button class="office-hotspot" slot="hotspot-meeting" data-position="2.0m 1.2m -3.5m" data-normal="0m 1m 0m" data-zone="meeting" type="button">Переговорная</button>
+</model-viewer>
+</div>
+
+<div class="office-quick-nav" aria-label="Быстрый выбор зоны">
+<button class="office-chip is-active" data-zone="overview" type="button">Общий вид</button>
+<button class="office-chip" data-zone="reception" type="button">Стойка</button>
+<button class="office-chip" data-zone="appraiser" type="button">Кабинет оценщика</button>
+<button class="office-chip" data-zone="archive" type="button">Архив</button>
+<button class="office-chip" data-zone="meeting" type="button">Переговорная</button>
+</div>
+</section>
+
+<aside class="office-panel reveal" aria-label="Зоны виртуального офиса">
+<div class="office-card-head office-card-head--compact">
+<div>
+<h2>Зоны офиса</h2>
+<p>Коротко о том, что означает каждая точка.</p>
+</div>
+</div>
+<div class="office-zone-list">
+<button class="office-zone-btn is-active" type="button" data-zone="overview">
+<strong>Общий вид</strong>
+<span>Осмотр офиса и выбор нужного раздела.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="reception">
+<strong>Стойка</strong>
+<span>Первое обращение, быстрая заявка и контакт с компанией.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="appraiser">
+<strong>Кабинет оценщика</strong>
+<span>Как специалист проверяет документы и параметры объекта.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="archive">
+<strong>Архив</strong>
+<span>Документы, отчёты и материалы, которые нужны для оценки.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="meeting">
+<strong>Переговорная</strong>
+<span>Обсуждение задачи, сроков, цели отчёта и дальнейших шагов.</span>
+</button>
+</div>
+<div class="office-zone-card" id="zoneCard">
+<div class="office-zone-card__label">Выбранная зона</div>
+<h3 id="zoneTitle">Общий вид</h3>
+<p id="zoneText">Осмотрите офис, приблизьте модель и выберите интересующую точку. Этот раздел помогает быстро понять, куда перейти дальше.</p>
+<div class="office-zone-actions">
+<a class="btn btn--gold" id="zonePrimary" href="#officeViewerBlock">Осмотреть модель</a>
+<a class="btn btn--secondary" id="zoneSecondary" href="lakshmi_gamified_application_restyled.html">Открыть заявку</a>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer site-footer--standard">
+<div class="container">
+<div class="footer-shell">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="footer-brand-head">
+<img alt="Эмблема Лакшми" class="footer-brand-logo" src="assets/img/lakshmi-emblem.png"/>
+<div>
+<div class="footer-brand-title">Лакшми</div>
+<div class="footer-brand-subtitle">Оценочная компания</div>
+</div>
+</div>
+<p class="footer-note">Независимая оценка для частных лиц и бизнеса: недвижимость, доли, оборудование, транспорт и спорные ситуации.</p>
+</div>
+<div class="footer-col">
+<h3>Разделы</h3>
+<div class="footer-links">
+<a href="lakshmi_landing_restyled.html#home">Главная</a>
+<a href="#top">3D офис</a>
+<a href="lakshmi_landing_restyled.html#cases">Ситуации</a>
+<a href="lakshmi_landing_restyled.html#services">Услуги</a>
+<a href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
+</div>
+</div>
+<div class="footer-col">
+<h3>Услуги</h3>
+<div class="footer-links">
+<a href="lakshmi_landing_restyled.html#services">Оценка недвижимости</a>
+<a href="lakshmi_landing_restyled.html#services">Оценка бизнеса и долей</a>
+<a href="lakshmi_landing_restyled.html#services">Оценка оборудования</a>
+<a href="lakshmi_landing_restyled.html#services">Оценка ущерба и споров</a>
+</div>
+</div>
+<div class="footer-col">
+<h3>Связь</h3>
+<div class="footer-links">
+<span>+7 (900) 000-00-00</span>
+<span>info@lakshmi-ocenka.ru</span>
+<span>По записи, онлайн-консультации и очный приём</span>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Лакшми — Оценочная компания</span>
+<div class="footer-bottom__links">
+<a href="lakshmi_landing_restyled.html#contacts">Оставить заявку</a>
+<span>·</span>
+<a href="/admin/login">Вход для менеджера</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<a aria-label="Наверх" class="top-anchor" href="#top">↑</a>
+<script src="assets/js/lakshmi-office.js"></script>
+</body>
+</html>

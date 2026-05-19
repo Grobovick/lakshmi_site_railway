@@ -1,0 +1,103 @@
+<main class="office-page" id="top">
+<section class="office-hero section">
+<div class="container">
+<div class="office-intro reveal">
+<div>
+<div class="eyebrow">Интерактивный офис</div>
+<h1>3D офис «Лакшми»</h1>
+<p class="office-lead">Поверните модель, выберите зону и перейдите к нужному действию: подаче заявки, этапам оценки, документам или контактам. Раздел сделан как навигация по услугам, а не как отдельная декоративная сцена.</p>
+</div>
+<div class="office-intro__note">
+<strong>Как пользоваться</strong>
+<span>Модель можно вращать мышью или пальцем. Для быстрого перехода используйте метки на модели или список справа.</span>
+</div>
+</div>
+
+<div class="office-layout">
+<section class="office-viewer-card reveal" aria-label="Интерактивная модель офиса">
+<div class="office-card-head">
+<div>
+<h2>План офиса</h2>
+<p>Выберите точку на модели или используйте кнопки под окном просмотра.</p>
+</div>
+<span class="office-badge">GLB модель</span>
+</div>
+
+<div class="office-viewer-stage" id="officeViewerBlock">
+<model-viewer
+id="officeViewer"
+src="assets/models/lakshmi-office.glb"
+alt="Виртуальный офис оценочной компании Лакшми"
+camera-controls
+touch-action="pan-y"
+shadow-intensity="1"
+exposure="1"
+environment-image="neutral"
+interaction-prompt="none"
+camera-orbit="15deg 72deg 12m"
+min-camera-orbit="auto 35deg auto"
+max-camera-orbit="auto 88deg auto"
+field-of-view="34deg"
+interpolation-decay="120"
+loading="eager"
+reveal="auto"
+disable-pan>
+<button class="office-hotspot" slot="hotspot-reception" data-position="0.0m 1.2m 3.0m" data-normal="0m 1m 0m" data-zone="reception" type="button">Стойка</button>
+<button class="office-hotspot" slot="hotspot-appraiser" data-position="2.2m 1.2m -0.2m" data-normal="0m 1m 0m" data-zone="appraiser" type="button">Кабинет</button>
+<button class="office-hotspot" slot="hotspot-archive" data-position="-2.6m 1.25m -1.9m" data-normal="0m 1m 0m" data-zone="archive" type="button">Архив</button>
+<button class="office-hotspot" slot="hotspot-meeting" data-position="2.0m 1.2m -3.5m" data-normal="0m 1m 0m" data-zone="meeting" type="button">Переговорная</button>
+</model-viewer>
+</div>
+
+<div class="office-quick-nav" aria-label="Быстрый выбор зоны">
+<button class="office-chip is-active" data-zone="overview" type="button">Общий вид</button>
+<button class="office-chip" data-zone="reception" type="button">Стойка</button>
+<button class="office-chip" data-zone="appraiser" type="button">Кабинет оценщика</button>
+<button class="office-chip" data-zone="archive" type="button">Архив</button>
+<button class="office-chip" data-zone="meeting" type="button">Переговорная</button>
+</div>
+</section>
+
+<aside class="office-panel reveal" aria-label="Зоны виртуального офиса">
+<div class="office-card-head office-card-head--compact">
+<div>
+<h2>Зоны офиса</h2>
+<p>Коротко о том, что означает каждая точка.</p>
+</div>
+</div>
+<div class="office-zone-list">
+<button class="office-zone-btn is-active" type="button" data-zone="overview">
+<strong>Общий вид</strong>
+<span>Осмотр офиса и выбор нужного раздела.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="reception">
+<strong>Стойка</strong>
+<span>Первое обращение, быстрая заявка и контакт с компанией.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="appraiser">
+<strong>Кабинет оценщика</strong>
+<span>Как специалист проверяет документы и параметры объекта.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="archive">
+<strong>Архив</strong>
+<span>Документы, отчёты и материалы, которые нужны для оценки.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="meeting">
+<strong>Переговорная</strong>
+<span>Обсуждение задачи, сроков, цели отчёта и дальнейших шагов.</span>
+</button>
+</div>
+<div class="office-zone-card" id="zoneCard">
+<div class="office-zone-card__label">Выбранная зона</div>
+<h3 id="zoneTitle">Общий вид</h3>
+<p id="zoneText">Осмотрите офис, приблизьте модель и выберите интересующую точку. Этот раздел помогает быстро понять, куда перейти дальше.</p>
+<div class="office-zone-actions">
+<a class="btn btn--gold" id="zonePrimary" href="#officeViewerBlock">Осмотреть модель</a>
+<a class="btn btn--secondary" id="zoneSecondary" href="lakshmi_gamified_application_restyled.html">Открыть заявку</a>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+</main>

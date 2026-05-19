@@ -39,3 +39,20 @@ public/assets/js/lakshmi-application.js
 ```
 
 После правок в `src/` нужно выполнить `npm run build`.
+
+## Виртуальный офис
+
+Добавлена отдельная страница `public/lakshmi_virtual_office.html`.
+Исходники страницы хранятся здесь:
+
+```text
+src/layouts/office.html
+src/pages/office.html
+src/partials/header-office.html
+src/partials/footer-office.html
+public/assets/css/lakshmi-office.css
+public/assets/js/lakshmi-office.js
+public/assets/models/lakshmi-office.glb
+```
+
+Навигация на страницу добавлена в шапку и подвал основных страниц. После правок в `src/` команда `npm run build` пересобирает главную, пошаговую заявку и виртуальный офис.
