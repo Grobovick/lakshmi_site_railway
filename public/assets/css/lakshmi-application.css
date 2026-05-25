@@ -387,7 +387,7 @@
       height: 205px;
       filter: drop-shadow(0 18px 30px rgba(77,24,18,.12));
     }
-    .house__roof { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); width: 0; height: 0; border-left: 146px solid transparent; border-right: 146px solid transparent; border-bottom: 92px solid rgba(77,24,18,.16); }
+    .house__roof { position: absolute; left: 50%; top: -7px; transform: translateX(-50%); width: 0; height: 0; border-left: 126px solid transparent; border-right: 126px solid transparent; border-bottom: 80px solid rgba(77,24,18,.16); }
     .house__body { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 284px; height: 132px; border-radius: 24px 24px 0 0; background: rgba(255,255,255,.72); border: 1px solid rgba(77,24,18,.08); overflow: hidden; }
     .house__fill { position: absolute; left: 0; right: 0; bottom: 0; height: 0%; background: linear-gradient(180deg, rgba(164,115,44,.84), rgba(107,58,127,.9)); transition: height .48s ease; }
     .house__grid { position: absolute; inset: 16px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; z-index: 2; }
@@ -1123,9 +1123,10 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
     height: 172px;
   }
   .house__roof {
-    border-left-width: 110px;
-    border-right-width: 110px;
-    border-bottom-width: 72px;
+    top: 2px;
+    border-left-width: 96px;
+    border-right-width: 96px;
+    border-bottom-width: 58px;
   }
   .house__body {
     width: 230px;
@@ -1328,4 +1329,21 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
 .site-header .nav .btn--gold:focus-visible,
 .mobile-menu__cta.btn--gold:focus-visible {
   color: #fff;
+}
+
+
+/* Final fixes: house visual alignment */
+.house__roof {
+  top: -7px;
+  border-left-width: 126px;
+  border-right-width: 126px;
+  border-bottom-width: 80px;
+}
+@media (max-width: 640px) {
+  .house__roof {
+    top: 2px;
+    border-left-width: 96px;
+    border-right-width: 96px;
+    border-bottom-width: 58px;
+  }
 }

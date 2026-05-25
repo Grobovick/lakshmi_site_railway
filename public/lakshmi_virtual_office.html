@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script>document.documentElement.classList.add('js');</script>
 <title>Лакшми — 3D офис</title>
-<meta content="Интерактивный 3D офис оценочной компании «Лакшми»: стойка, кабинет оценщика, архив и переговорная." name="description"/>
+<meta content="Интерактивный 3D офис оценочной компании «Лакшми»: входная зона, ресепшен, кабинет оценщика и архив." name="description"/>
 <link href="assets/css/lakshmi-main.css" rel="stylesheet"/>
 <link href="assets/css/lakshmi-office.css" rel="stylesheet"/>
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
@@ -15,8 +15,8 @@
 <div class="container header-inner">
 <a aria-label="Лакшми — Оценочная Компания" class="brand" href="lakshmi_landing_restyled.html#home"><img alt="Лакшми — Оценочная Компания" class="brand__logo brand__logo--full" src="assets/img/lakshmi-logo-full-header.png"/></a>
 <nav class="nav">
-<a href="lakshmi_landing_restyled.html#home">Главная</a><a class="is-active" href="#top">3D офис</a><a href="lakshmi_landing_restyled.html#cases">Ситуации</a><a href="lakshmi_landing_restyled.html#services">Услуги</a><a href="lakshmi_landing_restyled.html#process">Этапы</a><a href="lakshmi_landing_restyled.html#faq">FAQ</a><a href="lakshmi_landing_restyled.html#contacts">Контакты</a><a href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
-<a class="btn btn--gold" href="lakshmi_landing_restyled.html#contacts">Быстрая заявка</a>
+<a href="lakshmi_landing_restyled.html#home">Главная</a><a href="lakshmi_landing_restyled.html#cases">Ситуации</a><a href="lakshmi_landing_restyled.html#services">Услуги</a><a href="lakshmi_landing_restyled.html#process">Этапы</a><a href="lakshmi_landing_restyled.html#faq">FAQ</a><a href="lakshmi_landing_restyled.html#contacts">Контакты</a><a class="is-active" href="#top">3D офис</a>
+<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Оставить заявку</a>
 </nav>
 <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Открыть меню" class="nav-toggle" type="button">
 <span class="nav-toggle__lines"><span></span><span></span><span></span></span>
@@ -26,14 +26,14 @@
 <div class="mobile-menu__panel">
 <div class="mobile-menu__list">
 <a href="lakshmi_landing_restyled.html#home">Главная</a>
-<a href="#top">3D офис</a>
 <a href="lakshmi_landing_restyled.html#cases">Ситуации</a>
 <a href="lakshmi_landing_restyled.html#services">Услуги</a>
+<a href="lakshmi_landing_restyled.html#process">Этапы</a>
 <a href="lakshmi_landing_restyled.html#faq">FAQ</a>
 <a href="lakshmi_landing_restyled.html#contacts">Контакты</a>
-<a href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
+<a href="#top">3D офис</a>
 </div>
-<a class="btn btn--gold mobile-menu__cta" href="lakshmi_landing_restyled.html#contacts">Быстрая заявка</a>
+<a class="btn btn--gold mobile-menu__cta" href="lakshmi_gamified_application_restyled.html">Оставить заявку</a>
 </div>
 </div>
 </header>
@@ -81,19 +81,19 @@ interpolation-decay="120"
 loading="eager"
 reveal="auto"
 disable-pan>
-<button class="office-hotspot" slot="hotspot-reception" data-position="0.0m 1.2m 3.0m" data-normal="0m 1m 0m" data-zone="reception" type="button">Стойка</button>
+<button class="office-hotspot" slot="hotspot-entrance" data-position="2.0m 1.2m -3.5m" data-normal="0m 1m 0m" data-zone="entrance" type="button">Входная зона</button>
+<button class="office-hotspot" slot="hotspot-archive" data-position="-0.6m 1.25m 2.25m" data-normal="0m 1m 0m" data-zone="archive" type="button">Архив</button>
 <button class="office-hotspot" slot="hotspot-appraiser" data-position="2.2m 1.2m -0.2m" data-normal="0m 1m 0m" data-zone="appraiser" type="button">Кабинет</button>
-<button class="office-hotspot" slot="hotspot-archive" data-position="-2.6m 1.25m -1.9m" data-normal="0m 1m 0m" data-zone="archive" type="button">Архив</button>
-<button class="office-hotspot" slot="hotspot-meeting" data-position="2.0m 1.2m -3.5m" data-normal="0m 1m 0m" data-zone="meeting" type="button">Переговорная</button>
+<button class="office-hotspot" slot="hotspot-client-area" data-position="-2.6m 1.25m -1.9m" data-normal="0m 1m 0m" data-zone="clientArea" type="button">Приём клиентов</button>
 </model-viewer>
 </div>
 
 <div class="office-quick-nav" aria-label="Быстрый выбор зоны">
 <button class="office-chip is-active" data-zone="overview" type="button">Общий вид</button>
-<button class="office-chip" data-zone="reception" type="button">Стойка</button>
+<button class="office-chip" data-zone="entrance" type="button">Входная зона</button>
+<button class="office-chip" data-zone="clientArea" type="button">Приём клиентов</button>
 <button class="office-chip" data-zone="appraiser" type="button">Кабинет оценщика</button>
 <button class="office-chip" data-zone="archive" type="button">Архив</button>
-<button class="office-chip" data-zone="meeting" type="button">Переговорная</button>
 </div>
 </section>
 
@@ -109,9 +109,13 @@ disable-pan>
 <strong>Общий вид</strong>
 <span>Осмотр офиса и выбор нужного раздела.</span>
 </button>
-<button class="office-zone-btn" type="button" data-zone="reception">
-<strong>Стойка</strong>
-<span>Первое обращение, быстрая заявка и контакт с компанией.</span>
+<button class="office-zone-btn" type="button" data-zone="entrance">
+<strong>Входная зона</strong>
+<span>Ориентир при входе в офис и быстрый выбор нужного раздела.</span>
+</button>
+<button class="office-zone-btn" type="button" data-zone="clientArea">
+<strong>Приём клиентов</strong>
+<span>Зона ожидания и первичной консультации перед подачей заявки.</span>
 </button>
 <button class="office-zone-btn" type="button" data-zone="appraiser">
 <strong>Кабинет оценщика</strong>
@@ -120,10 +124,6 @@ disable-pan>
 <button class="office-zone-btn" type="button" data-zone="archive">
 <strong>Архив</strong>
 <span>Документы, отчёты и материалы, которые нужны для оценки.</span>
-</button>
-<button class="office-zone-btn" type="button" data-zone="meeting">
-<strong>Переговорная</strong>
-<span>Обсуждение задачи, сроков, цели отчёта и дальнейших шагов.</span>
 </button>
 </div>
 <div class="office-zone-card" id="zoneCard">

@@ -75,13 +75,21 @@
       primary: { text: 'Осмотреть модель', href: '#officeViewerBlock' },
       secondary: { text: 'Открыть заявку', href: 'lakshmi_gamified_application_restyled.html' }
     },
-    reception: {
-      title: 'Стойка',
-      text: 'Здесь начинается обращение: можно перейти к быстрой форме или открыть подробную пошаговую заявку.',
-      orbit: '4deg 74deg 8.2m',
-      target: '0m 1.1m 2.8m',
-      primary: { text: 'Подать заявку', href: 'lakshmi_gamified_application_restyled.html' },
-      secondary: { text: 'Быстрая форма', href: 'lakshmi_landing_restyled.html#contacts' }
+    entrance: {
+      title: 'Входная зона',
+      text: 'Входная зона помогает сориентироваться в пространстве офиса и выбрать нужный раздел: заявку, этапы работы или документы.',
+      orbit: '118deg 74deg 8.2m',
+      target: '2.0m 1.2m -3.5m',
+      primary: { text: 'К заявке', href: 'lakshmi_gamified_application_restyled.html' },
+      secondary: { text: 'Этапы работы', href: 'lakshmi_landing_restyled.html#process' }
+    },
+    clientArea: {
+      title: 'Приём клиентов',
+      text: 'Зона ожидания и первичной консультации: здесь можно спокойно обсудить задачу, цель оценки и дальнейшие шаги.',
+      orbit: '-50deg 73deg 8m',
+      target: '-2.5m 1.2m -1.9m',
+      primary: { text: 'Оставить заявку', href: 'lakshmi_gamified_application_restyled.html' },
+      secondary: { text: 'Контакты', href: 'lakshmi_landing_restyled.html#contacts' }
     },
     appraiser: {
       title: 'Кабинет оценщика',
@@ -93,20 +101,12 @@
     },
     archive: {
       title: 'Архив',
-      text: 'В архиве логично объяснить, какие документы, фотографии и сведения обычно нужны для подготовки отчёта.',
-      orbit: '-50deg 73deg 8m',
-      target: '-2.5m 1.2m -1.9m',
+      text: 'Зона документов и материалов: здесь показано, какие сведения, фотографии и файлы могут понадобиться для подготовки отчёта.',
+      orbit: '8deg 74deg 7.8m',
+      target: '-0.6m 1.15m 2.25m',
       primary: { text: 'Собрать документы', href: 'lakshmi_gamified_application_restyled.html#progress' },
       secondary: { text: 'FAQ', href: 'lakshmi_landing_restyled.html#faq' }
     },
-    meeting: {
-      title: 'Переговорная',
-      text: 'Здесь уместно перейти к обсуждению задачи: цель отчёта, сроки, формат результата и дальнейшие действия.',
-      orbit: '118deg 74deg 8.2m',
-      target: '2.0m 1.2m -3.5m',
-      primary: { text: 'Связаться', href: 'lakshmi_landing_restyled.html#contacts' },
-      secondary: { text: 'Пошаговая заявка', href: 'lakshmi_gamified_application_restyled.html' }
-    }
   };
 
   function applyZone(zoneKey) {
