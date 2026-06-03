@@ -111,6 +111,7 @@ function getNowId(prefix = '') {
 function validateLead(payload) {
   const name = sanitize(payload.name, 120);
   const phone = sanitize(payload.phone, 40);
+  const email = sanitize(payload.email, 180);
   const service = sanitize(payload.service, 120);
   const message = sanitize(payload.message, 2000);
   const website = sanitize(payload.website, 200);
@@ -125,12 +126,20 @@ function validateLead(payload) {
   if (!phone || phone.length < 6) {
     return { ok: false, message: 'Укажите телефон для связи.' };
   }
+  if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    return { ok: false, message: 'Укажите корректную почту.' };
+  }
   if (!service) {
     return { ok: false, message: 'Выберите услугу.' };
   }
   if (consent !== 'yes') {
     return { ok: false, message: 'Нужно согласие на обработку персональных данных.' };
   }
+
+  const fullMessage = [
+    `Почта: ${email}`,
+    message ? `Описание: ${message}` : '',
+  ].filter(Boolean).join('\n\n');
 
   return {
     ok: true,
@@ -139,9 +148,10 @@ function validateLead(payload) {
       createdAt: new Date().toISOString(),
       name,
       phone,
+      email,
       service,
-      message,
-      source: 'Главная страница сайта',
+      message: fullMessage,
+      source: 'Краткая заявка на главной странице',
       status: 'new',
       managerNote: '',
     },
@@ -443,6 +453,7 @@ async function sendLeadEmail(lead) {
       <p><strong>Дата:</strong> ${localDate}</p>
       <p><strong>Имя:</strong> ${lead.name}</p>
       <p><strong>Телефон:</strong> ${lead.phone}</p>
+      <p><strong>Почта:</strong> ${lead.email || 'Не указана'}</p>
       <p><strong>Услуга:</strong> ${lead.service}</p>
       <p><strong>Комментарий:</strong><br>${(lead.message || 'Не указан').replace(/\n/g, '<br>')}</p>
       <p style="margin-top:16px;">Админка: <a href="${process.env.SITE_URL || 'http://localhost:' + PORT}/admin/login">открыть список заявок</a></p>
@@ -461,6 +472,7 @@ async function sendLeadEmail(lead) {
       `Дата: ${localDate}`,
       `Имя: ${lead.name}`,
       `Телефон: ${lead.phone}`,
+      `Почта: ${lead.email || 'Не указана'}`,
       `Услуга: ${lead.service}`,
       `Комментарий: ${lead.message || 'Не указан'}`,
     ].join('\n'),
@@ -486,6 +498,7 @@ async function sendTelegramMessage(lead) {
     '',
     `Имя: ${lead.name}`,
     `Телефон: ${lead.phone}`,
+    `Почта: ${lead.email || 'Не указана'}`,
     `Услуга: ${lead.service}`,
     `Дата: ${localDate}`,
     `Источник: ${lead.source}`,

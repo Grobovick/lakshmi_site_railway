@@ -1,11 +1,11 @@
 <section class="section" id="contacts">
-<div class="container contact-wrap contact-wrap--banner">
+<div class="container contact-wrap contact-wrap--quick">
 <div class="contact-card reveal">
 <div class="eyebrow">Контакты</div>
 <h2>Связаться с «Лакшми»</h2>
-<p class="contact-lead">Опишите задачу через пошаговую заявку или свяжитесь с компанией удобным способом. После обращения специалист уточнит детали, перечень документов и сроки подготовки отчёта.</p>
+<p class="contact-lead">Оставьте короткое обращение или перейдите к пошаговой заявке, если хотите сразу приложить документы, фотографии и параметры объекта.</p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; margin: 0 0 20px;">
-<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Оставить заявку</a>
+<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
 <a class="btn btn--secondary" href="#services">Посмотреть услуги</a>
 </div>
 <div class="contact-points">
@@ -23,16 +23,55 @@
 </div>
 </div>
 </div>
-<div class="application-banner reveal" aria-label="Переход к пошаговой заявке">
-<div class="application-banner__inner">
-<div class="application-banner__label">Пошаговая заявка</div>
-<h3>Заполните заявку без лишних вопросов</h3>
-<p>Форма ведёт по этапам: объект, документы, фотографии, цель оценки и контакты. Можно заполнить только то, что есть сейчас — недостающие детали специалист уточнит после обращения.</p>
-<div class="application-banner__steps" aria-hidden="true">
-<span>Объект</span><span>Документы</span><span>Фото</span><span>Цель</span><span>Контакты</span>
+<div class="quick-request-card reveal" aria-label="Краткая заявка">
+<div class="quick-request-card__head">
+<div>
+<div class="quick-request-card__label">Краткая заявка</div>
+<h3>Опишите задачу в двух словах</h3>
 </div>
-<a class="btn btn--gold application-banner__cta" href="lakshmi_gamified_application_restyled.html">Перейти к заявке</a>
+<span>1–2 минуты</span>
 </div>
+<p class="quick-request-card__lead">Специалист уточнит детали, перечень документов и удобный формат дальнейшей работы.</p>
+<form class="form quick-form" id="leadForm" novalidate>
+<input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" class="anti-spam-field">
+<div class="quick-form__grid">
+<div class="field">
+<label for="leadName">Имя пользователя</label>
+<input id="leadName" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+</div>
+<div class="field">
+<label for="leadPhone">Телефон</label>
+<input id="leadPhone" name="phone" type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+</div>
+</div>
+<div class="field">
+<label for="leadEmail">Почта</label>
+<input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="Для ответа или документов" required>
+</div>
+<div class="field">
+<label for="leadService">Услуга</label>
+<select id="leadService" name="service" required>
+<option value="">Выберите услугу</option>
+<option value="Оценка недвижимости">Оценка недвижимости</option>
+<option value="Оценка бизнеса и долей">Оценка бизнеса и долей</option>
+<option value="Оценка транспорта">Оценка транспорта</option>
+<option value="Оценка оборудования">Оценка оборудования</option>
+<option value="Оценка ущерба">Оценка ущерба</option>
+<option value="Оценка для суда, банка или нотариуса">Оценка для суда, банка или нотариуса</option>
+<option value="Другое">Другое</option>
+</select>
+</div>
+<div class="field">
+<label for="leadMessage">Описание задачи</label>
+<textarea id="leadMessage" name="message" rows="4" placeholder="Например: нужна оценка квартиры для банка, документы есть не все"></textarea>
+</div>
+<label class="consent-line">
+<input type="checkbox" name="consent" value="yes" required>
+<span>Я согласен(на) на обработку и передачу данных для подготовки ответа по заявке.</span>
+</label>
+<button class="btn btn--gold quick-form__submit" id="leadSubmit" type="submit">Отправить краткую заявку</button>
+<p class="form-status" id="formStatus" role="status" aria-live="polite">После отправки заявка появится в административной панели.</p>
+</form>
 </div>
 </div>
 </section>
