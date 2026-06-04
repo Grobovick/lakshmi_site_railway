@@ -1347,3 +1347,75 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
     border-bottom-width: 58px;
   }
 }
+
+
+/* Personal data documents links */
+.consent-line a,
+.consent-row a,
+.footer-bottom__links a[href$=".pdf"] {
+  color: #7b4d12;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.consent-line a:hover,
+.consent-row a:hover,
+.footer-bottom__links a[href$=".pdf"]:hover {
+  color: #4D1812;
+}
+@media (max-width: 640px) {
+  .footer-bottom__links {
+    gap: 8px;
+  }
+}
+
+/* Final compact consent block on application page */
+.application-consent-block {
+  margin: -2px 0 8px;
+  padding: 0 2px 0 42px;
+}
+.application-consent-block .consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 400;
+}
+.application-consent-block .consent-row input {
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  flex: 0 0 auto;
+  accent-color: var(--gold);
+}
+.application-consent-block .consent-row span {
+  display: block;
+  max-width: 720px;
+}
+.application-consent-block .consent-row a {
+  color: #7b4d12;
+  font-size: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.application-consent-block .consent-row a:hover {
+  color: #4D1812;
+}
+@media (max-width: 900px) {
+  .application-consent-block {
+    padding-left: 0;
+  }
+}
+@media (max-width: 640px) {
+  .application-consent-block .consent-row {
+    font-size: 12.5px;
+  }
+}
