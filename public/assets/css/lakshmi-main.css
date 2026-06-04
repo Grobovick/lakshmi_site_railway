@@ -2944,3 +2944,24 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
     width: 100%;
   }
 }
+
+
+/* Personal data documents links */
+.consent-line a,
+.consent-row a,
+.footer-bottom__links a[href$=".pdf"] {
+  color: #7b4d12;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.consent-line a:hover,
+.consent-row a:hover,
+.footer-bottom__links a[href$=".pdf"]:hover {
+  color: #4D1812;
+}
+@media (max-width: 640px) {
+  .footer-bottom__links {
+    gap: 8px;
+  }
+}
