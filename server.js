@@ -126,8 +126,8 @@ function validateLead(payload) {
   if (!phone || phone.length < 6) {
     return { ok: false, message: 'Укажите телефон для связи.' };
   }
-  if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-    return { ok: false, message: 'Укажите корректную почту.' };
+  if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+    return { ok: false, message: 'Укажите корректную почту или оставьте поле пустым.' };
   }
   if (!service) {
     return { ok: false, message: 'Выберите услугу.' };

@@ -14,7 +14,7 @@
 <a aria-label="Лакшми — Оценочная Компания" class="brand" href="#home"><img alt="Лакшми — Оценочная Компания" class="brand__logo brand__logo--full" src="assets/img/lakshmi-logo-full-header.png"/></a>
 <nav class="nav">
 <a class="is-active" href="#home">Главная</a><a href="#cases">Ситуации</a><a href="#services">Услуги</a><a href="#process">Этапы</a><a href="#faq">FAQ</a><a href="#contacts">Контакты</a><a href="lakshmi_virtual_office.html">3D офис</a>
-<a class="btn btn--gold" href="#contacts">Оставить заявку</a>
+<a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Оставить заявку</a>
 </nav>
 <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Открыть меню" class="nav-toggle" type="button">
 <span class="nav-toggle__lines"><span></span><span></span><span></span></span>
@@ -31,7 +31,7 @@
 <a href="#contacts">Контакты</a>
 <a href="lakshmi_virtual_office.html">3D офис</a>
 </div>
-<a class="btn btn--gold mobile-menu__cta" href="#contacts">Оставить заявку</a>
+<a class="btn btn--gold mobile-menu__cta" href="lakshmi_gamified_application_restyled.html">Оставить заявку</a>
 </div>
 </div>
 </header>
@@ -161,7 +161,7 @@
 <div class="contact-card reveal">
 <div class="eyebrow">Контакты</div>
 <h2>Связаться с «Лакшми»</h2>
-<p class="contact-lead">Оставьте короткое обращение или перейдите к пошаговой заявке, если хотите сразу приложить документы, фотографии и параметры объекта. Данные ниже заполнены по открытым источникам.</p>
+<p class="contact-lead">Оставьте короткое обращение или перейдите к пошаговой заявке, если хотите сразу приложить документы, фотографии и параметры объекта.</p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; margin: 0 0 20px;">
 <a class="btn btn--gold" href="lakshmi_gamified_application_restyled.html">Пошаговая заявка</a>
 <a class="btn btn--secondary" href="#services">Посмотреть услуги</a>
@@ -178,14 +178,6 @@
 <div class="contact-point">
 <strong>Адрес</strong>
 <span>241007, Брянская область, г. Брянск, ул. Дуки, д. 37, помещ. 1</span>
-</div>
-<div class="contact-point">
-<strong>Реквизиты</strong>
-<span>ИНН 3200013073 · ОГРН 1253200003760 · КПП 320001001</span>
-</div>
-<div class="contact-point">
-<strong>Руководитель</strong>
-<span>Веремьева Валерия Викторовна</span>
 </div>
 <div class="contact-point">
 <strong>Формат работы</strong>
@@ -214,9 +206,10 @@
 <input id="leadPhone" name="phone" type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
 </div>
 </div>
-<div class="field">
-<label for="leadEmail">Почта</label>
-<input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="Для ответа или документов" required>
+<div class="field field--optional">
+<label for="leadEmail">Почта <span class="field__optional">необязательно</span></label>
+<input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="Для ответа или документов">
+<p class="field__hint">Можно оставить пустым — специалист свяжется по телефону.</p>
 </div>
 <div class="field">
 <label for="leadService">Услуга</label>
@@ -231,9 +224,10 @@
 <option value="Другое">Другое</option>
 </select>
 </div>
-<div class="field">
-<label for="leadMessage">Описание задачи</label>
+<div class="field field--optional">
+<label for="leadMessage">Описание задачи <span class="field__optional">необязательно</span></label>
 <textarea id="leadMessage" name="message" rows="4" placeholder="Например: нужна оценка квартиры для банка, документы есть не все"></textarea>
+<p class="field__hint">Можно не заполнять — детали уточнят при первом звонке.</p>
 </div>
 <label class="consent-line">
 <input type="checkbox" name="consent" value="yes" required>
@@ -252,13 +246,9 @@
 <div class="footer-shell">
 <div class="footer-grid">
 <div class="footer-brand">
-<div class="footer-brand-head">
-<img alt="Эмблема Лакшми" class="footer-brand-logo" src="assets/img/lakshmi-emblem.png"/>
-<div>
-<div class="footer-brand-title">Лакшми</div>
-<div class="footer-brand-subtitle">Оценочная компания</div>
-</div>
-</div>
+<a class="footer-brand-head footer-brand-head--logo" href="#home" aria-label="Лакшми — Оценочная Компания">
+<img alt="Лакшми — Оценочная Компания" class="footer-brand-logo footer-brand-logo--full" src="assets/img/lakshmi-logo-full-header.png"/>
+</a>
 <p class="footer-note">Независимая оценка для частных лиц и бизнеса: недвижимость, доли, оборудование, транспорт и спорные ситуации.</p>
 </div>
 <div class="footer-col">

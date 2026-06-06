@@ -364,3 +364,31 @@ model-viewer {
     gap: 8px;
   }
 }
+
+
+/* === Targeted footer logo fix === */
+.site-footer--standard .footer-brand-head--logo {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+.site-footer--standard .footer-brand-logo--full {
+  width: clamp(178px, 15vw, 224px);
+  height: auto;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .site-footer--standard .footer-brand-logo--full {
+    width: 190px;
+  }
+}
