@@ -38,7 +38,7 @@ public/assets/css/lakshmi-application.css
 public/assets/js/lakshmi-application.js
 ```
 
-После правок в `src/` нужно выполнить `npm run build`.
+После правок в `src/` нужно выполнить `npm run build`. Важно: если изменить только файлы в `public/`, деплой на Render может снова перезаписать их данными из `src/` во время сборки.
 
 ## Виртуальный офис
 
