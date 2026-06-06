@@ -88,7 +88,7 @@
       text: 'Зона ожидания и первичной консультации: здесь можно спокойно обсудить задачу, цель оценки и дальнейшие шаги.',
       orbit: '-50deg 73deg 8m',
       target: '-2.5m 1.2m -1.9m',
-      primary: { text: 'Оставить заявку', href: 'lakshmi_gamified_application_restyled.html' },
+      primary: { text: 'Оставить заявку', href: 'lakshmi_landing_restyled.html#contacts' },
       secondary: { text: 'Контакты', href: 'lakshmi_landing_restyled.html#contacts' }
     },
     appraiser: {
