@@ -1419,3 +1419,72 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
     font-size: 12.5px;
   }
 }
+
+/* === Patch 2026-06: clean white header + tighter readable logo === */
+.site-header {
+  background: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid rgba(77, 24, 18, 0.08);
+  box-shadow: 0 10px 28px rgba(77, 24, 18, 0.055);
+}
+
+.header-inner {
+  min-height: 96px;
+}
+
+.site-header .brand {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  line-height: 0;
+}
+
+.site-header .brand:hover {
+  background: transparent;
+}
+
+.site-header .brand__logo--full {
+  width: auto;
+  height: 78px;
+  max-height: none;
+  object-fit: contain;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.site-header .nav a:not(.btn) {
+  color: rgba(77, 24, 18, 0.62);
+  font-weight: 600;
+}
+
+.site-header .nav a:not(.btn):hover,
+.site-header .nav a:not(.btn).is-active {
+  color: var(--purple);
+  background: rgba(77, 24, 18, 0.055);
+}
+
+@media (max-width: 1120px) {
+  .header-inner { min-height: 88px; }
+  .site-header .brand__logo--full { height: 68px; }
+}
+
+@media (max-width: 900px) {
+  .header-inner { min-height: 76px; }
+  .site-header .brand { padding: 0; border-radius: 0; }
+  .site-header .brand__logo--full { height: 58px; width: auto; max-height: none; }
+}
+
+@media (max-width: 560px) {
+  .site-header .brand__logo--full { height: 48px; width: auto; }
+}
+
+.contact-points--company .contact-point span {
+  line-height: 1.45;
+}
+
