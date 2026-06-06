@@ -922,7 +922,7 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   border: 1px solid rgba(77, 24, 18, 0.08);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.5)),
@@ -3094,4 +3094,16 @@ p, li, .lead, .section-head p, .card p, .card li, .card span, .trust-item span, 
     margin-left: 4px;
     padding: 2px 7px;
   }
+}
+
+
+/* Scenario illustrations: generated card images are prepared in a uniform 16:9 ratio. */
+.scenario-media--image {
+  background: #fcf6ec;
+}
+
+.scenario-media--image img {
+  object-fit: cover;
+  padding: 0;
+  background: #fcf6ec;
 }
